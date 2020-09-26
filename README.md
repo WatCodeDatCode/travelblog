@@ -9,11 +9,12 @@ This project is a simple travel blog including new entry submission form, as req
 
 ## Features
 * Add travel blog entry to local storage through submission form
-
-To Dos:
 * Display entries on page after submission
 * Allow removal of entries from page and local storage
-* Show current weather of previous travel destinations through OpenWeatherMap API
+
+To Dos:
+* Improve styling of elements
+* Add current weather of previous travel destinations from fetched Weather API
 
 Potential nice-to-haves:
 * Fetch location of destinations using Google Maps API
@@ -22,3 +23,4 @@ Potential nice-to-haves:
 ## Technologies
 Project is created with:
 * [Tailwind CSS](https://tailwindcss.com/ "TailwindCSS Homepage")
+* [Weather API](https://openweathermap.org/api "Weather API documentation")

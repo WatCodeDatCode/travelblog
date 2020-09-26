@@ -1,5 +1,3 @@
-// https://github.com/hamburgcodingschool/javascript-for-web-2020-09/blob/master/PROJECT.md
-
 // Form elements
 const addEntryForm = document.getElementById("add-new-entry");
 const cityInput = document.getElementById("city-input");
@@ -13,25 +11,46 @@ const modalWindow = document.getElementById("modal-window");
 const openModalWindowButton = document.getElementById("open-modal-window");
 const closeModalWindowSpan = document.getElementsByClassName("close")[0];
 
+// Variable for weather API
+const apiKey = "03bbfddd33521d0c17e64ea09b10e111";
+
+// Function to fetch weather from API
+const fetchWeather = (city) => {
+  return fetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+  ).then((response) => response.json());
+};
+
+// const showCityInformation = (city) => {
+//   fetchWeather(city).then((data) => {
+//     console.log(data);
+//     createCityInformation(data);
+//   });
+// };
+
+// Blog elements
+const blogEntriesSection = document.getElementById("blog-entries");
+
 // ** MODAL WINDOW FUNCTIONS ** //
 // When the user clicks on the button to add new entry, open modal form
-openModalWindowButton.onclick = function() {
-    modalWindow.style.display = "block";
-}
+openModalWindowButton.onclick = function () {
+  modalWindow.style.display = "block";
+};
 
 // When the user clicks on span "x" of modal window, close window
-closeModalWindowSpan.onclick = function() {
-    modalWindow.style.display = "none";
-}
+closeModalWindowSpan.onclick = function () {
+  modalWindow.style.display = "none";
+};
 
 // When the user clicks anywhere outside of the modal window, close it
-window.onclick = function(event) {
-    if (event.target == modalWindow) {
-        modalWindow.style.display = "none";
-    }
-}
+window.onclick = function (event) {
+  if (event.target == modalWindow) {
+    modalWindow.style.display = "none";
+  }
+};
 // ** END MODAL WINDOW FUNCTIONS ** //
 
+// ** DATE FUNCTIONS ** //
 // Variable for current date
 let today = new Date();
 let currentDay = today.getDate();
@@ -59,6 +78,7 @@ tripFromDateInput.onchange = function () {
   tripToDateInput.min = this.value;
   tripToDateInput.value = this.value;
 };
+// ** END DATE FUNCTIONS ** //
 
 // *** FORM FUNCTIONS *** //
 const onSubmit = (event) => {
@@ -79,34 +99,35 @@ const onSubmit = (event) => {
   };
 
   addEntry(entry);
+  modalWindow.style.display = "none";
   resetForm();
 };
 
-const addEntry = entry => {
-    saveEntry(entry);
-    // createEntriesHtml(); //TODO: Add function, also for singleEntriesHtml
-}
+const addEntry = (entry) => {
+  saveEntry(entry);
+  createEntries();
+};
 
-const saveEntry = entry => {
-    const entries = getEntries();
-    entries.push(entry);
-  
-    const stringifiedEntries = JSON.stringify(entries);
-    localStorage.setItem("entries", stringifiedEntries);
-}
+const saveEntry = (entry) => {
+  const entries = getEntries();
+  entries.push(entry);
+
+  const stringifiedEntries = JSON.stringify(entries);
+  localStorage.setItem("entries", stringifiedEntries);
+};
 
 const getEntries = () => {
-    const entries = localStorage.getItem("entries");
+  const entries = localStorage.getItem("entries");
 
-    if (!entries) {
-      return [];
-    }
-  
-    const parsedEntries = JSON.parse(entries);
-    // const sortedEntries = sortEntries(parsedEntries);
-  
-    return parsedEntries;
-}
+  if (!entries) {
+    return [];
+  }
+
+  const parsedEntries = JSON.parse(entries);
+  // const sortedEntries = sortEntries(parsedEntries);
+
+  return parsedEntries;
+};
 
 const resetForm = () => {
   addEntryForm.reset();
@@ -114,3 +135,94 @@ const resetForm = () => {
 
 addEntryForm.addEventListener("submit", onSubmit);
 // *** END FORM FUNCTIONS *** //
+
+//Creates HTML entry for new post
+const createSingleEntry = (entry) => {
+  let post = `
+    <div class="px-6 py-4">
+    <div class="font-bold text-4xl mb-2">Trip to ${entry.city}, ${entry.country}</b></div>
+    <p class="text-lg">
+      Arrival: ${entry.from_date} Departure: ${entry.to_date}
+    </p>
+    </div>
+    <p>${entry.trip_summary}</p>
+    `;
+  return post;
+};
+
+
+// TODO: Add weather to entries!
+const createCityInformation = (city) => {
+  fetchWeather(city).then((data) => {
+    console.log(data);
+    const temperature = JSON.stringify(data.main.temp);
+    const feelsLike = JSON.stringify(data.main.feels_like);
+    const tempMin = JSON.stringify(data.main.temp_min);
+    const tempMax = JSON.stringify(data.main.temp_max);
+    const imageUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+
+    let weather = `<h3>Current weather:</h3>
+    <img src="${imageUrl}"/>
+    <p><span class ="font-bold">Current temperature:</span> ${temperature}<p>
+    <p><span class ="font-bold">Feels like:</span> ${feelsLike}<p>
+    <p><span class ="font-bold">Low:</span> ${tempMin}<p>
+    <p><span class ="font-bold">High:</span> ${tempMax}<p>`;
+    console.log(weather)
+    return weather;
+  });
+};
+
+// Updates all entries
+const createEntries = () => {
+  blogEntriesSection.innerHTML = ""; // Clears entries to avoid constantly re-adding the whole list
+
+  getEntries().forEach((entry, index) => {
+    const element = document.createElement("div");
+    element.classList.add(
+      "container",
+      "mx-auto",
+      "text-center",
+      "m-4",
+      "p-4",
+      "bg-blue-200",
+      "rounded",
+    );
+    const post = createSingleEntry(entry);
+    element.innerHTML = post;
+
+    const button = document.createElement("button");
+    button.classList.add(
+      "bg-red-400",
+      "text-white",
+      "mt-2",
+      "px-3",
+      "py-2",
+      "text-sm",
+      "rounded"
+    );
+    button.innerHTML =
+      '<span class="text-black font-bold hover:font-bolder">X</span> Remove';
+    element.appendChild(button);
+
+    button.addEventListener("click", () => {
+      removeEntry(index);
+      createEntries();
+      alert("Blog entry removed");
+    });
+
+    blogEntriesSection.appendChild(element);
+  });
+};
+
+// Function for removing entry from locale storage
+const removeEntry = (index) => {
+  const entries = getEntries();
+  entries.splice(index, 1);
+
+  const stringifiedEntries = JSON.stringify(entries);
+  localStorage.setItem("entries", stringifiedEntries);
+
+  console.log(entries);
+};
+
+createEntries();
