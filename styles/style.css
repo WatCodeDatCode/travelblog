@@ -1,33 +1,28 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body {
-    background-color: orange;
-    height: 100vh;
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem;
-    padding: 1rem;
+/* Modal form */
+.modal-content {
+  position: fixed;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, 20%);
+  background-color: #fefefe;
+  width: 95%;
 }
-
-input, option, textarea {
-    margin: 0.5em;
-    padding: 0.5em 2em 0.5em 1em;
-}
-
-button {
-    background-color: black;
-    color: white;
-    border: none;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 1em;
-    padding: 0.5em 1em;
-} */

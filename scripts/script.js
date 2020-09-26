@@ -8,6 +8,30 @@ const tripFromDateInput = document.getElementById("from-date-input");
 const tripToDateInput = document.getElementById("to-date-input");
 const tripSummaryInput = document.getElementById("trip-summary-input");
 
+// Elements for modal window
+const modalWindow = document.getElementById("modal-window");
+const openModalWindowButton = document.getElementById("open-modal-window");
+const closeModalWindowSpan = document.getElementsByClassName("close")[0];
+
+// ** MODAL WINDOW FUNCTIONS ** //
+// When the user clicks on the button to add new entry, open modal form
+openModalWindowButton.onclick = function() {
+    modalWindow.style.display = "block";
+}
+
+// When the user clicks on span "x" of modal window, close window
+closeModalWindowSpan.onclick = function() {
+    modalWindow.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal window, close it
+window.onclick = function(event) {
+    if (event.target == modalWindow) {
+        modalWindow.style.display = "none";
+    }
+}
+// ** END MODAL WINDOW FUNCTIONS ** //
+
 // Variable for current date
 let today = new Date();
 let currentDay = today.getDate();
@@ -45,12 +69,6 @@ const onSubmit = (event) => {
   const from_date = tripFromDateInput.value;
   const to_date = tripToDateInput.value;
   const trip_summary = tripSummaryInput.value;
-
-//   localStorage.setItem("city", submittedCity);
-//   localStorage.setItem("country", submittedCountry);
-//   localStorage.setItem("from-date", submittedFromDate);
-//   localStorage.setItem("to-date", submittedToDate);
-//   localStorage.setItem("", submittedTripSummary);
 
   const entry = {
     city,
