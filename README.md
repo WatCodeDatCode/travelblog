@@ -1,8 +1,8 @@
 # Travel Blog Project
 ## Table of contents
-* [General information] (#general-information)
-* [Features] (#features)
-* [Technologies] (#technologies)
+* [General information](#general-information)
+* [Features](#features)
+* [Technologies](#technologies)
 
 ## General information
 This project is a simple travel blog including new entry submission form, as required for _Javascript for Web_ course at _Hamburg Coding School_.
@@ -21,4 +21,4 @@ Potential nice-to-haves:
 
 ## Technologies
 Project is created with:
-* [TailwindCSS] (https://tailwindcss.com/ "TailwindCSS Homepage")
+* [Tailwind CSS](https://tailwindcss.com/ "TailwindCSS Homepage")
