@@ -22,5 +22,5 @@ Potential nice-to-haves:
 
 ## Technologies
 Project is created with:
-* [Tailwind CSS](https://tailwindcss.com/ "TailwindCSS Homepage")
+* [Tailwind CSS](https://tailwindcss.com/ "TailwindCSS Homepage") version: 1.8.10
 * [Weather API](https://openweathermap.org/api "Weather API documentation")
