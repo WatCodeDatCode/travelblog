@@ -1,0 +1,23 @@
+{
+  "name": "travelblog",
+  "version": "1.0.0",
+  "description": "* [General information](#general-information) * [Features](#features) * [Technologies](#technologies)",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "tailwindcss build src/style.css -o styles/styles.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WatCodeDatCode/travelblog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WatCodeDatCode/travelblog/issues"
+  },
+  "homepage": "https://github.com/WatCodeDatCode/travelblog#readme",
+  "dependencies": {
+    "tailwindcss": "^1.8.10"
+  }
+}
