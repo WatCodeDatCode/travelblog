@@ -11,39 +11,32 @@ const modalWindow = document.getElementById("modal-window");
 const openModalWindowButton = document.getElementById("open-modal-window");
 const closeModalWindowSpan = document.getElementsByClassName("close")[0];
 
+// Blog element
+const blogEntriesSection = document.getElementById("blog-entries");
+
 // Variable for weather API
 const apiKey = "03bbfddd33521d0c17e64ea09b10e111";
 
 // Function to fetch weather from API
-const fetchWeather = (city) => {
+const fetchWeather = city => {
   return fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
   ).then((response) => response.json());
 };
 
-// const showCityInformation = (city) => {
-//   fetchWeather(city).then((data) => {
-//     console.log(data);
-//     createCityInformation(data);
-//   });
-// };
-
-// Blog elements
-const blogEntriesSection = document.getElementById("blog-entries");
-
 // ** MODAL WINDOW FUNCTIONS ** //
 // When the user clicks on the button to add new entry, open modal form
-openModalWindowButton.onclick = function () {
+openModalWindowButton.onclick = function() {
   modalWindow.style.display = "block";
 };
 
 // When the user clicks on span "x" of modal window, close window
-closeModalWindowSpan.onclick = function () {
+closeModalWindowSpan.onclick = function() {
   modalWindow.style.display = "none";
 };
 
 // When the user clicks anywhere outside of the modal window, close it
-window.onclick = function (event) {
+window.onclick = function(event) {
   if (event.target == modalWindow) {
     modalWindow.style.display = "none";
   }
@@ -81,7 +74,7 @@ tripFromDateInput.onchange = function () {
 // ** END DATE FUNCTIONS ** //
 
 // *** FORM FUNCTIONS *** //
-const onSubmit = (event) => {
+const onSubmit = event => {
   event.preventDefault();
 
   const city = cityInput.value;
@@ -103,12 +96,20 @@ const onSubmit = (event) => {
   resetForm();
 };
 
-const addEntry = (entry) => {
+const formatDate = date => {
+  const value = new Date(date);
+  const formatted_date = `${value.getDate()}-${
+    value.getMonth() + 1
+  }-${value.getFullYear()}`;
+  return formatted_date;
+};
+
+const addEntry = entry => {
   saveEntry(entry);
   createEntries();
 };
 
-const saveEntry = (entry) => {
+const saveEntry = entry => {
   const entries = getEntries();
   entries.push(entry);
 
@@ -124,7 +125,6 @@ const getEntries = () => {
   }
 
   const parsedEntries = JSON.parse(entries);
-  // const sortedEntries = sortEntries(parsedEntries);
 
   return parsedEntries;
 };
@@ -137,24 +137,28 @@ addEntryForm.addEventListener("submit", onSubmit);
 // *** END FORM FUNCTIONS *** //
 
 //Creates HTML entry for new post
-const createSingleEntry = (entry) => {
+const createSingleEntry = entry => {
   let post = `
     <div class="px-6 py-4">
-    <div class="font-bold text-4xl mb-2">Trip to ${entry.city}, ${entry.country}</b></div>
+    <div class="font-bold text-4xl mb-2">Trip to ${entry.city}, ${
+    entry.country
+  }</b></div>
     <p class="text-lg">
-      Arrival: ${entry.from_date} Departure: ${entry.to_date}
+      Arrival: ${formatDate(entry.from_date)}
+    </p>
+    <p class="text-lg">
+      Departure: ${formatDate(entry.to_date)}
     </p>
     </div>
-    <p>${entry.trip_summary}</p>
+    <p class="m-2 whitespace-pre-line">${entry.trip_summary}</p>
     `;
-  return post;
+    
+    return post;
 };
 
-
 // TODO: Add weather to entries!
-const createCityInformation = (city) => {
+const createCityInformation = city => {
   fetchWeather(city).then((data) => {
-    console.log(data);
     const temperature = JSON.stringify(data.main.temp);
     const feelsLike = JSON.stringify(data.main.feels_like);
     const tempMin = JSON.stringify(data.main.temp_min);
@@ -163,11 +167,12 @@ const createCityInformation = (city) => {
 
     let weather = `<h3>Current weather:</h3>
     <img src="${imageUrl}"/>
-    <p><span class ="font-bold">Current temperature:</span> ${temperature}<p>
-    <p><span class ="font-bold">Feels like:</span> ${feelsLike}<p>
-    <p><span class ="font-bold">Low:</span> ${tempMin}<p>
-    <p><span class ="font-bold">High:</span> ${tempMax}<p>`;
-    console.log(weather)
+    <p>Current temperature: ${temperature}</p>
+    <p>Feels like: ${feelsLike}</p>
+    <p>Low: ${tempMin}</p>
+    <p>High: ${tempMax}</p>
+    `;
+
     return weather;
   });
 };
@@ -185,9 +190,11 @@ const createEntries = () => {
       "m-4",
       "p-4",
       "bg-blue-200",
-      "rounded",
+      "rounded"
     );
+    
     const post = createSingleEntry(entry);
+    const weather = createCityInformation(entry.city); //TODO: Figure out why it keeps returning undefined even when weather prints successfully to console
     element.innerHTML = post;
 
     const button = document.createElement("button");
@@ -205,9 +212,11 @@ const createEntries = () => {
     element.appendChild(button);
 
     button.addEventListener("click", () => {
-      removeEntry(index);
-      createEntries();
-      alert("Blog entry removed");
+      let confirmation = confirm("Are you sure you want to delete this entry? This CANNOT be undone!");
+      if (confirmation == true) {
+        removeEntry(index);
+        createEntries();
+      }
     });
 
     blogEntriesSection.appendChild(element);
@@ -215,7 +224,7 @@ const createEntries = () => {
 };
 
 // Function for removing entry from locale storage
-const removeEntry = (index) => {
+const removeEntry = index => {
   const entries = getEntries();
   entries.splice(index, 1);
 
