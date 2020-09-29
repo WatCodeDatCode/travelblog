@@ -92,13 +92,16 @@ const onSubmit = (event) => {
   };
 
   addEntry(entry);
+  createWeatherInformation(city);
   modalWindow.style.display = "none";
   resetForm();
 };
 
 const formatDate = (date) => {
   const value = new Date(date);
-  const formatted_date = `${value.getDate()}-${value.getMonth()+1}-${value.getFullYear()}`;
+  const formatted_date = `${value.getDate()}-${
+    value.getMonth() + 1
+  }-${value.getFullYear()}`;
   return formatted_date;
 };
 
@@ -134,12 +137,10 @@ const resetForm = () => {
 addEntryForm.addEventListener("submit", onSubmit);
 // *** END FORM FUNCTIONS *** //
 
-// Function to generate random number for random pic URL  
-const randomNumber = (min, max) => {  
-    return Math.floor(Math.random() * (max - min) + min); 
-}  
-
-
+// Function to generate random number for random pic URL
+const randomNumber = (min, max) => {
+  return Math.floor(Math.random() * (max - min) + min);
+};
 
 // TODO: Add weather to entries!
 // const createWeatherWidget = (data) => {
@@ -149,19 +150,19 @@ const randomNumber = (min, max) => {
 //         temp_max: data.main.temp_max,
 //         image: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`
 //     }
-    // const temperature = data.main.temp;
-    // const feelsLike = data.main.feels_like;
-    // const tempMin = data.main.temp_min;
-    // const tempMax = data.main.temp_max;
-    // const imageUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+// const temperature = data.main.temp;
+// const feelsLike = data.main.feels_like;
+// const tempMin = data.main.temp_min;
+// const tempMax = data.main.temp_max;
+// const imageUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
 
-    // let weather = `<h3 class="text-3xl text-green-300">Current weather:</h3>
-    // <img src="${imageUrl}"/>
-    // <p>Current temperature: ${temperature}</p>
-    // <p>Feels like: ${feelsLike}</p>
-    // <p>Low: ${tempMin}</p>
-    // <p>High: ${tempMax}</p>
-    // `;
+// let weather = `<h3 class="text-3xl text-green-300">Current weather:</h3>
+// <img src="${imageUrl}"/>
+// <p>Current temperature: ${temperature}</p>
+// <p>Feels like: ${feelsLike}</p>
+// <p>Low: ${tempMin}</p>
+// <p>High: ${tempMax}</p>
+// `;
 
 //     return weather;
 // };
@@ -169,23 +170,71 @@ const randomNumber = (min, max) => {
 const createWeatherInformation = (city) => {
   fetchWeather(city).then((data) => {
     const weather = {
-        temp: data.main.temp.toFixed(1),
-        temp_min: data.main.temp_min.toFixed(1),
-        temp_max: data.main.temp_max.toFixed(1),
-        image: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`
-    }
+      city: city,
+      temp: data.main.temp.toFixed(1),
+      temp_min: data.main.temp_min.toFixed(1),
+      temp_max: data.main.temp_max.toFixed(1),
+      image: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
+    };
 
-    return JSON.stringify(weather);
+    const weatherEntries = getWeatherEntries();
+    weatherEntries.push(weather);
 
+    const stringifiedWeather = JSON.stringify(weatherEntries);
+    localStorage.setItem("weather_entries", stringifiedWeather);
+
+    // return JSON.stringify(weather);
   });
 };
 
+// const getWeatherInformation = (city) => {
+//   fetchWeather(city).then((data) => {
+//     const weather = {
+//       temp: data.main.temp.toFixed(1),
+//       temp_min: data.main.temp_min.toFixed(1),
+//       temp_max: data.main.temp_max.toFixed(1),
+//       image: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
+//     };
+//     console.log({weather})
+//     return weather;
+//   });
+// };
 
+//** START LOOKING HERE */
+// const addWeather = (city) => {
+//   const currentWeather = getWeatherInformation(city);
+//   console.log({currentWeather})
+//   saveWeather(currentWeather);
+//   //   createWeather();
+// };
+
+// const saveWeather = (weatherInformation) => {
+//   const weather = getWeatherEntries();
+//   weather.push(weatherInformation);
+
+//   const stringifiedWeather = JSON.stringify(weather);
+//   localStorage.setItem("weather_entries", stringifiedWeather);
+// };
+
+const getWeatherEntries = () => {
+  const weatherEntries = localStorage.getItem("weather_entries");
+
+  if (!weatherEntries) {
+    return [];
+  }
+
+  const parsedWeatherEntries = JSON.parse(weatherEntries);
+
+  return parsedWeatherEntries;
+};
 
 //Creates HTML entry for new post
 const createSingleEntry = (entry) => {
-//   let randomImageUrl = `https://source.unsplash.com/random/900x700?random=${randomNumber(1, 900)}`;
-  const weather = createWeatherInformation(entry.city);
+  //   let randomImageUrl = `https://source.unsplash.com/random/900x700?random=${randomNumber(1, 900)}`;
+  const weatherEntries = localStorage.getItem("weather_entries");
+  const city = entry.city;
+  const parsedWeatherEntries = JSON.parse(weatherEntries);
+  console.log(parsedWeatherEntries)
 
   //! Add image URL //
   let post = `
@@ -198,8 +247,12 @@ const createSingleEntry = (entry) => {
             />
         <div class="px-6 py-4">
             <h3 class="text-primary-600 text-4xl text-center">${entry.city}</h3>
-            <p><span class="font-bold">Arrival:</span> ${formatDate(entry.from_date)}</p>
-            <p><span class="font-bold">Departure: </span> ${formatDate(entry.to_date)}</p>
+            <p><span class="font-bold">Arrival:</span> ${formatDate(
+              entry.from_date
+            )}</p>
+            <p><span class="font-bold">Departure: </span> ${formatDate(
+              entry.to_date
+            )}</p>
             <p class="mt-3 whitespace-pre-wrap">${entry.trip_summary}</p>
         </div>
     </div>
@@ -211,7 +264,7 @@ const createSingleEntry = (entry) => {
         <p class="w-full text-xl md:text-4xl mt-8">Current weather</p>
         <img
           class="mx-auto h-auto"
-          src="http://openweathermap.org/img/wn/10d@2x.png"
+          src="1"
           alt=""
         />
       </div>
@@ -219,15 +272,15 @@ const createSingleEntry = (entry) => {
         <p class="tracking-normal text-sm text-dark-400">
           Temperature &#8451;
         </p>
-        4.5
+        1
       </div>
       <div class="w-1/2 text-xl md:text-3xl">
         <p class="text-xs lg:text-lg mx-2 text-dark-400">Low:</p>
-        4.5
+        1
       </div>
       <div class="w-1/2 text-xl md:text-3xl">
         <p class="text-xs lg:text-lg mx-2 text-dark-400">High:</p>
-        12.5
+        1
       </div>
     </div>
     <img
@@ -248,18 +301,19 @@ const createEntries = () => {
   getEntries().forEach((entry, index) => {
     const element = document.createElement("div");
     element.classList.add(
-        "mt-6",
-        "p-1",
-        "md:p-4",
-        "mx-1",
-        "md:mx-10",
-        "lg:mx-4",
-        "bg-dark-500",
-        "rounded",
-        "relative");
+      "mt-6",
+      "p-1",
+      "md:p-4",
+      "mx-1",
+      "md:mx-10",
+      "lg:mx-4",
+      "bg-dark-500",
+      "rounded",
+      "relative"
+    );
 
     const post = createSingleEntry(entry);
-    const weather = createWeatherInformation(entry.city); //TODO: Figure out why it keeps returning undefined even when weather prints successfully to console
+    // const weather = createWeatherInformation(entry.city); //TODO: Figure out why it keeps returning undefined even when weather prints successfully to console
     element.innerHTML = post;
 
     const deleteEntry = document.createElement("span");
@@ -290,7 +344,14 @@ const removeEntry = (index) => {
   const stringifiedEntries = JSON.stringify(entries);
   localStorage.setItem("entries", stringifiedEntries);
 
+  const weatherEntries = getWeatherEntries();
+  weatherEntries.splice(index, 1);
+
+  const stringifiedWeather = JSON.stringify(weatherEntries);
+  localStorage.setItem("weather_entries", stringifiedWeather);
+
   console.log(entries);
+  console.log(weatherEntries);
 };
 
 createEntries();
