@@ -6,8 +6,12 @@
   @apply py-1 px-2 uppercase rounded-full cursor-pointer tracking-wider; 
 }
 
+.close_modal {
+  @apply block absolute top-0 right-0 pt-1 pr-3 font-bold text-xl text-primary-500 cursor-pointer;
+}
+
 .badge {
-  @apply text-sm uppercase font-bold rounded-full py-1 px-2 absolute top-0 ml-2 mt-2 text-primary-300 bg-dark-700;
+  @apply text-lg uppercase font-bold rounded-full py-1 px-2 absolute top-0 ml-2 mt-2 text-primary-200 bg-dark-800;
 }
 
 .card {
@@ -22,25 +26,22 @@
   @apply text-white cursor-pointer font-bold absolute top-0 right-0 mr-3 mt-1;
 }
 
-/* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* Modal form */
 .modal-content {
   position: fixed;
   left: 50%;
   right: 50%;
   transform: translate(-50%, 20%);
-  background-color: #fefefe;
   width: 95%;
 }

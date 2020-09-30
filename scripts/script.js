@@ -125,17 +125,17 @@ const getEntries = () => {
 
 const resetForm = () => {
   addEntryForm.reset();
-};getWeatherInformation('Hamburg')
-.then(data => {
-    const weather = {
-      temp: data.main.temp.toFixed(1),
-      temp_min: data.main.temp_min.toFixed(1),
-      temp_max: data.main.temp_max.toFixed(1),
-      image: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
-    };
-    console.log({ weather });
-    return weather;
-  });
+};
+getWeatherInformation("Hamburg").then((data) => {
+  const weather = {
+    temp: data.main.temp.toFixed(1),
+    temp_min: data.main.temp_min.toFixed(1),
+    temp_max: data.main.temp_max.toFixed(1),
+    image: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
+  };
+  console.log({ weather });
+  return weather;
+});
 
 addEntryForm.addEventListener("submit", onSubmit);
 // *** END FORM FUNCTIONS *** //
@@ -166,21 +166,18 @@ async function createSingleEntry(entry) {
 
   let city = entry.city;
 
-  const weather = await getWeatherInformation(city).then((data) => {
-    const weather = {
-      temp: data.main.temp.toFixed(1),
-      temp_min: data.main.temp_min.toFixed(1),
-      temp_max: data.main.temp_max.toFixed(1),
-      image: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
-    };
-
-    return weather;
-  });
+  const data = await getWeatherInformation(city);
+  const weather = {
+    temp: data.main.temp.toFixed(1),
+    temp_min: data.main.temp_min.toFixed(1),
+    temp_max: data.main.temp_max.toFixed(1),
+    image: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
+  };
   let post = `
     <div class="card">
             <span class="badge">${entry.country}</span>
             <img
-            class="w-full h-30 object-cover"
+            class="w-full object-cover"
             src="${randomImageUrl}" 
             alt=""
             />
@@ -202,11 +199,11 @@ async function createSingleEntry(entry) {
       <div class="flex flex-wrap w-full">
         <p class="w-full text-xl md:text-4xl mt-8">Current weather</p>
         <img
-          class="mx-auto h-auto"
+          class="mx-auto text-xl self-start w-1/6 lg:w-1/3"
           src="${weather.image}"
           alt=""
         />
-      </div>
+
       <div class="w-full text-3xl md:text-5xl tracking-tighter">
         <p class="tracking-normal text-sm text-dark-400">
           Temperature &#8451;
@@ -222,12 +219,14 @@ async function createSingleEntry(entry) {
         ${weather.temp_max}
       </div>
     </div>
+    </div>
     <img
       class="col-span-3 md:col-span-2 w-full object-contain"
       src="${randomImageUrlSmall}"
       alt=""
     />
   </div>
+
     `;
 
   // console.log(post)

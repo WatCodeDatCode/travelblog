@@ -8,9 +8,9 @@
   </head>
 
   <body class="text-dark-600 bg-light-200 font-mono">
-    <div class="grid grid-cols-5">
-        <div class="h-full bg-dark-500"></div>
-        <div class="col-span-4">
+    <div class="grid lg:grid-cols-5">
+        <div class="h-full min-h-screen bg-dark-500"></div>
+        <div class="lg:col-span-4">
       <h1 class="text-5xl text-center text-primary-500">Travel Blog</h1>
       <div class="mx-3 text-center">
         <button
@@ -79,18 +79,18 @@
       </div> -->
       <!-- END PROTOTYPING -->
 
-      <div id="blog-entries" class="m-6"></div>
+      <div id="blog-entries" class="m-0 lg:m-6"></div>
     </div>
 
       <!-- START FORM -->
       <div id="modal-window" class="modal">
         <div
-          class="container flex mx-auto my-auto p-5 border border-black modal-content"
+          class="modal-content container bg-light-300 flex mx-auto my-auto p-5 rounded"
         >
           <form id="add-new-entry" class="w-full pt-2">
             <span
-              class="close block absolute top-0 right-0 pr-2 font-bold text-xl text-blue-700 hover:text-blue-300 cursor-pointer"
-              >&times;</span
+              class="close close_modal hover:text-primary-800 text-lg"
+              >&times;</span 
             >
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -104,7 +104,7 @@
                   type="text"
                   id="city-input"
                   autocomplete="on"
-                  class="appearance-none block w-full bg-gray-200 text-dark-600 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  class="appearance-none block w-full bg-light-100 text-dark-600 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   required
                 />
               </div>
@@ -436,7 +436,7 @@
             </div>
 
             <button
-              class="btn bg-secondary-500 hover:bg-secondary-700 text-white focus:outline-none focus:shadow-outline"
+              class="btn mx-auto bg-primary-500 hover:bg-primary-600 text-white focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Add entry
