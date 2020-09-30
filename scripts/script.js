@@ -91,10 +91,12 @@ const onSubmit = (event) => {
     trip_summary,
   };
 
-  addEntry(entry);
-  createWeatherInformation(city);
   modalWindow.style.display = "none";
   resetForm();
+  
+  createWeatherInformation(city);
+  addEntry(entry);
+
 };
 
 const formatDate = (date) => {
@@ -167,6 +169,98 @@ const randomNumber = (min, max) => {
 //     return weather;
 // };
 
+// const createWeatherWidget = (index) => {
+//     const weatherEntries = localStorage.getItem("weather_entries");
+//     const parsedWeatherEntries = JSON.parse(weatherEntries);
+//     console.log(parsedWeatherEntries[index])
+//     let randomImageUrl = `https://source.unsplash.com/random/800x700?random=${randomNumber(1, 900)}`;
+
+
+// let weatherWidget = `
+// <div class="weather-card h-auto">
+//     <div
+//       class="col-span-3 md:col-span-1 w-full flex flex-wrap mb-6 px-2"
+//     >
+//       <div class="flex flex-wrap w-full">
+//         <p class="w-full text-xl md:text-4xl mt-8">Current weather</p>
+//         <img
+//           class="mx-auto h-auto"
+//           src="${parsedWeatherEntries[index].image}"
+//           alt=""
+//         />
+//       </div>
+//       <div class="w-full text-3xl md:text-5xl tracking-tighter">
+//         <p class="tracking-normal text-sm text-dark-400">
+//           Temperature &#8451;
+//         </p>
+//         ${parsedWeatherEntries[index].temp}
+//       </div>
+//       <div class="w-1/2 text-xl md:text-3xl">
+//         <p class="text-xs lg:text-lg mx-2 text-dark-400">Low:</p>
+//         ${parsedWeatherEntries[index].temp_min}
+//       </div>
+//       <div class="w-1/2 text-xl md:text-3xl">
+//         <p class="text-xs lg:text-lg mx-2 text-dark-400">High:</p>
+//         ${parsedWeatherEntries[index].temp_max}
+//       </div>
+//     </div>
+//     <img
+//       class="col-span-3 md:col-span-2 w-full object-contain"
+//       src="${randomImageUrl}"
+//       alt=""
+//     />
+//   </div>
+// `;
+
+//     return weatherWidget;
+// };
+
+// async function createWeatherWidget1 (city) {
+//     let randomImageUrl = `https://source.unsplash.com/random/900x700?random=${randomNumber(1, 900)}`;
+//     const weather = await addWeather(city).then
+
+
+//  weatherWidget = `
+// <div class="weather-card h-auto">
+//     <div
+//       class="col-span-3 md:col-span-1 w-full flex flex-wrap mb-6 px-2"
+//     >
+//       <div class="flex flex-wrap w-full">
+//         <p class="w-full text-xl md:text-4xl mt-8">Current weather</p>
+//         <img
+//           class="mx-auto h-auto"
+//           src="${weather.image}"
+//           alt=""
+//         />
+//       </div>
+//       <div class="w-full text-3xl md:text-5xl tracking-tighter">
+//         <p class="tracking-normal text-sm text-dark-400">
+//           Temperature &#8451;
+//         </p>
+//         ${weather.temp}
+//       </div>
+//       <div class="w-1/2 text-xl md:text-3xl">
+//         <p class="text-xs lg:text-lg mx-2 text-dark-400">Low:</p>
+//         ${weather.temp_min}
+//       </div>
+//       <div class="w-1/2 text-xl md:text-3xl">
+//         <p class="text-xs lg:text-lg mx-2 text-dark-400">High:</p>
+//         ${weather.temp_max}
+//       </div>
+//     </div>
+//     <img
+//       class="col-span-3 md:col-span-2 w-full object-contain"
+//       src="${randomImageUrl}"
+//       alt=""
+//     />
+//   </div>
+// `;
+// return console.log(weatherWidget)
+// };
+
+// createWeatherWidget1('Hamburg');
+
+
 const createWeatherInformation = (city) => {
   fetchWeather(city).then((data) => {
     const weather = {
@@ -183,30 +277,28 @@ const createWeatherInformation = (city) => {
     const stringifiedWeather = JSON.stringify(weatherEntries);
     localStorage.setItem("weather_entries", stringifiedWeather);
 
-    // return JSON.stringify(weather);
+    return weather;
   });
 };
 
-// const getWeatherInformation = (city) => {
-//   fetchWeather(city).then((data) => {
-//     const weather = {
-//       temp: data.main.temp.toFixed(1),
-//       temp_min: data.main.temp_min.toFixed(1),
-//       temp_max: data.main.temp_max.toFixed(1),
-//       image: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
-//     };
-//     console.log({weather})
-//     return weather;
-//   });
-// };
+async function getWeatherInformation (city) {
+  fetchWeather(city).then((data) => {
+    const weather = {
+      temp: data.main.temp.toFixed(1),
+      temp_min: data.main.temp_min.toFixed(1),
+      temp_max: data.main.temp_max.toFixed(1),
+      image: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
+    };
+    return console.log(weather);
+  });
+};
 
-//** START LOOKING HERE */
-// const addWeather = (city) => {
-//   const currentWeather = getWeatherInformation(city);
+async function addWeather (city) {
+  return currentWeather = await getWeatherInformation(city);
 //   console.log({currentWeather})
 //   saveWeather(currentWeather);
-//   //   createWeather();
-// };
+  //   createWeather();
+};
 
 // const saveWeather = (weatherInformation) => {
 //   const weather = getWeatherEntries();
@@ -228,21 +320,18 @@ const getWeatherEntries = () => {
   return parsedWeatherEntries;
 };
 
-//Creates HTML entry for new post
-const createSingleEntry = (entry) => {
-  //   let randomImageUrl = `https://source.unsplash.com/random/900x700?random=${randomNumber(1, 900)}`;
-  const weatherEntries = localStorage.getItem("weather_entries");
-  const city = entry.city;
-  const parsedWeatherEntries = JSON.parse(weatherEntries);
-  console.log(parsedWeatherEntries)
 
-  //! Add image URL //
+async function createSingleEntry (entry) {
+  let randomImageUrl = `https://source.unsplash.com/random/1000x800?random=${randomNumber(1, 900)}`;
+  let randomImageUrlSmall = `https://source.unsplash.com/random/900x800?random=${randomNumber(1, 900)}`;
+    console.log(entry.city)
+  const weather = await getWeatherInformation(entry.city).then
   let post = `
     <div class="card">
             <span class="badge">${entry.country}</span>
             <img
             class="w-full h-30 object-cover"
-            src="" 
+            src="${randomImageUrl}" 
             alt=""
             />
         <div class="px-6 py-4">
@@ -264,7 +353,7 @@ const createSingleEntry = (entry) => {
         <p class="w-full text-xl md:text-4xl mt-8">Current weather</p>
         <img
           class="mx-auto h-auto"
-          src="1"
+          src="${weather.image}"
           alt=""
         />
       </div>
@@ -272,20 +361,20 @@ const createSingleEntry = (entry) => {
         <p class="tracking-normal text-sm text-dark-400">
           Temperature &#8451;
         </p>
-        1
+        ${weather.temp}
       </div>
       <div class="w-1/2 text-xl md:text-3xl">
         <p class="text-xs lg:text-lg mx-2 text-dark-400">Low:</p>
-        1
+        ${weather.temp_min}
       </div>
       <div class="w-1/2 text-xl md:text-3xl">
         <p class="text-xs lg:text-lg mx-2 text-dark-400">High:</p>
-        1
+        ${weather.temp_max}
       </div>
     </div>
     <img
       class="col-span-3 md:col-span-2 w-full object-contain"
-      src="https://source.unsplash.com/random/600x500"
+      src="${randomImageUrlSmall}"
       alt=""
     />
   </div>
@@ -295,10 +384,10 @@ const createSingleEntry = (entry) => {
 };
 
 // Updates all entries
-const createEntries = () => {
+async function createEntries () {
   blogEntriesSection.innerHTML = ""; // Clears entries to avoid constantly re-adding the whole list
 
-  getEntries().forEach((entry, index) => {
+  for (const [index, entry] of getEntries().entries()) {
     const element = document.createElement("div");
     element.classList.add(
       "mt-6",
@@ -312,8 +401,8 @@ const createEntries = () => {
       "relative"
     );
 
-    const post = createSingleEntry(entry);
-    // const weather = createWeatherInformation(entry.city); //TODO: Figure out why it keeps returning undefined even when weather prints successfully to console
+    const post = await createSingleEntry(entry)
+    // const weather = await createWeatherWidget(entry.city);
     element.innerHTML = post;
 
     const deleteEntry = document.createElement("span");
@@ -331,9 +420,8 @@ const createEntries = () => {
         createEntries();
       }
     });
-
     blogEntriesSection.appendChild(element);
-  });
+  };
 };
 
 // Function for removing entry from locale storage
