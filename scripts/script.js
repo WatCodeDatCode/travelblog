@@ -1,3 +1,16 @@
+// Example entry to be set as initial entry of blog before first posts made to local storage
+let exampleEntry = [
+  {
+    city: "Hamburg",
+    country: "DE",
+    arrival_date: "2020-09-02",
+    departure_date: "2020-09-15",
+    trip_summary: `This was a place that I went to once. It was pretty cool I guess, like the Alster and the "water" that comes from it.
+        
+        Delete this entry by clicking the 'x' in the upper right corner after adding your own!`,
+  },
+];
+
 // Form elements
 const addEntryForm = document.getElementById("add-new-entry");
 const cityInput = document.getElementById("city-input");
@@ -5,6 +18,10 @@ const countryInput = document.getElementById("country-input");
 const tripFromDateInput = document.getElementById("from-date-input");
 const tripToDateInput = document.getElementById("to-date-input");
 const tripSummaryInput = document.getElementById("trip-summary-input");
+
+// Sort select elements
+const sortDiv = document.getElementById("sort-div");
+const orderSelect = document.getElementById("order-select");
 
 // Elements for modal window
 const modalWindow = document.getElementById("modal-window");
@@ -17,7 +34,7 @@ const blogEntriesSection = document.getElementById("blog-entries");
 // Variable for weather API
 const apiKey = "03bbfddd33521d0c17e64ea09b10e111";
 
-// ** MODAL WINDOW FUNCTIONS ** //
+// *** MODAL WINDOW FUNCTIONS *** //
 // When the user clicks on the button to add new entry, open modal form
 openModalWindowButton.onclick = function () {
   modalWindow.style.display = "block";
@@ -34,9 +51,9 @@ window.onclick = function (event) {
     modalWindow.style.display = "none";
   }
 };
-// ** END MODAL WINDOW FUNCTIONS ** //
+// *** END MODAL WINDOW FUNCTIONS *** //
 
-// ** DATE FUNCTIONS ** //
+// *** DATE FUNCTIONS *** //
 // Variable for current date
 let today = new Date();
 let currentDay = today.getDate();
@@ -64,7 +81,47 @@ tripFromDateInput.onchange = function () {
   tripToDateInput.min = this.value;
   tripToDateInput.value = this.value;
 };
-// ** END DATE FUNCTIONS ** //
+// *** END DATE FUNCTIONS *** //
+
+// *** SORT FUNCTIONS *** //
+// Only show sorting option if more than one object exists for entries
+const showSortDiv = () => {
+  let entries = localStorage.getItem("entries");
+  let parsedEntries = JSON.parse(entries);
+
+  if (parsedEntries[1]) {
+    sortDiv.style.display = "block";
+  } else {
+    sortDiv.style.display = "none";
+  }
+};
+
+// Sort entries from latest trips to oldest by default
+let sortDirection = "DESC";
+
+const onOrderSelectChange = (event) => {
+  sortDirection = event.target.value;
+  createEntries();
+};
+
+orderSelect.addEventListener("change", onOrderSelectChange);
+
+// Function for sorting entries
+const sortEntries = (entries) => {
+  if (sortDirection === "DESC") {
+    return entries.sort(
+      (a, b) => Date.parse(b.arrival_date) - Date.parse(a.arrival_date)
+    );
+  }
+
+  if (sortDirection === "ASC") {
+    return entries.sort(
+      (a, b) => Date.parse(a.arrival_date) - Date.parse(b.arrival_date)
+    );
+  }
+};
+
+// *** END SORT FUNCTIONS *** //
 
 // *** FORM FUNCTIONS *** //
 const onSubmit = (event) => {
@@ -72,15 +129,15 @@ const onSubmit = (event) => {
 
   const city = cityInput.value;
   const country = countryInput.value;
-  const from_date = tripFromDateInput.value;
-  const to_date = tripToDateInput.value;
+  const arrival_date = tripFromDateInput.value;
+  const departure_date = tripToDateInput.value;
   const trip_summary = tripSummaryInput.value;
 
   const entry = {
     city,
     country,
-    from_date,
-    to_date,
+    arrival_date,
+    departure_date,
     trip_summary,
   };
 
@@ -112,30 +169,25 @@ const saveEntry = (entry) => {
 };
 
 const getEntries = () => {
-  const entries = localStorage.getItem("entries");
+  showSortDiv();
+  let entries = localStorage.getItem("entries");
 
   if (!entries) {
-    return [];
+    return exampleEntry;
   }
 
   const parsedEntries = JSON.parse(entries);
+  const sortedEntries = sortEntries(parsedEntries);
 
-  return parsedEntries;
+  return sortedEntries;
 };
+
+// Initialize entries
+getEntries();
 
 const resetForm = () => {
   addEntryForm.reset();
 };
-getWeatherInformation("Hamburg").then((data) => {
-  const weather = {
-    temp: data.main.temp.toFixed(1),
-    temp_min: data.main.temp_min.toFixed(1),
-    temp_max: data.main.temp_max.toFixed(1),
-    image: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
-  };
-  console.log({ weather });
-  return weather;
-});
 
 addEntryForm.addEventListener("submit", onSubmit);
 // *** END FORM FUNCTIONS *** //
@@ -155,11 +207,11 @@ async function getWeatherInformation(city) {
 }
 
 async function createSingleEntry(entry) {
-  let randomImageUrl = `https://source.unsplash.com/random/1000x800?random=${randomNumber(
+  let randomImageUrl = `https://source.unsplash.com/random/800x700?random=${randomNumber(
     1,
     900
   )}`;
-  let randomImageUrlSmall = `https://source.unsplash.com/random/900x800?random=${randomNumber(
+  let randomImageUrlSmall = `https://source.unsplash.com/random/700x600?random=${randomNumber(
     1,
     900
   )}`;
@@ -175,61 +227,64 @@ async function createSingleEntry(entry) {
   };
   let post = `
     <div class="card">
-            <span class="badge">${entry.country}</span>
-            <img
-            class="w-full object-cover"
-            src="${randomImageUrl}" 
-            alt=""
-            />
-        <div class="px-6 py-4">
-            <h3 class="text-primary-600 text-4xl text-center">${entry.city}</h3>
-            <p><span class="font-bold">Arrival:</span> ${formatDate(
-              entry.from_date
-            )}</p>
-            <p><span class="font-bold">Departure: </span> ${formatDate(
-              entry.to_date
-            )}</p>
-            <p class="mt-3 whitespace-pre-wrap">${entry.trip_summary}</p>
+    <span class="badge">${entry.country}</span>
+    <img class="w-full h-1/2 object-cover" src="${randomImageUrl}" alt="" />
+    <div class="px-6 py-4">
+        <h3
+        class="text-primary-600 text-3xl sm:text-4xl xl:text-6xl text-center"
+        >
+        ${entry.city}
+        </h3>
+        <div class="flex justify-around px-3 py-1 text-lg sm:text-2xl">
+        <div class="mx-3 sm:mx-6 lg:mx-10 xl:mx-18">
+            <p class="font-bold">Arrival:</p>
+            <p>${formatDate(entry.arrival_date)}</p>
         </div>
+        <div class="mx-3 sm:mx-6 lg:mx-10 xl:mx-18">
+            <p class="font-bold">Departure:</p>
+            <p>${formatDate(entry.departure_date)}</p>
+        </div>
+        </div>
+        <p class="mx-1 sm:mx-3 lg:mx-10 text-lg sm:text-xl mt-3 whitespace-pre-wrap">
+        ${entry.trip_summary}
+        </p>
+    </div>
     </div>
     <div class="weather-card h-auto">
-    <div
-      class="col-span-3 md:col-span-1 w-full flex flex-wrap mb-6 px-2"
-    >
-      <div class="flex flex-wrap w-full">
+    <div class="col-span-3 md:col-span-1 w-full flex flex-wrap mb-6 px-2">
+        <div class="flex flex-wrap w-full">
         <p class="w-full text-xl md:text-4xl mt-8">Current weather</p>
         <img
-          class="mx-auto text-xl self-start w-1/6 lg:w-1/3"
-          src="${weather.image}"
-          alt=""
+            class="mx-auto self-start w-1/6 lg:w-1/3"
+            src="${weather.image}"
+            alt=""
         />
 
-      <div class="w-full text-3xl md:text-5xl tracking-tighter">
-        <p class="tracking-normal text-sm text-dark-400">
-          Temperature &#8451;
-        </p>
-        ${weather.temp}
-      </div>
-      <div class="w-1/2 text-xl md:text-3xl">
-        <p class="text-xs lg:text-lg mx-2 text-dark-400">Low:</p>
-        ${weather.temp_min}
-      </div>
-      <div class="w-1/2 text-xl md:text-3xl">
-        <p class="text-xs lg:text-lg mx-2 text-dark-400">High:</p>
-        ${weather.temp_max}
-      </div>
-    </div>
+        <div class="w-full text-3xl md:text-5xl tracking-tighter">
+            <p class="tracking-normal text-sm text-dark-400">
+            Temperature &#8451;
+            </p>
+            ${weather.temp}
+        </div>
+        <div class="w-1/2 text-xl md:text-3xl">
+            <p class="text-xs lg:text-lg mx-2 text-dark-400">Low:</p>
+            ${weather.temp_min}
+        </div>
+        <div class="w-1/2 text-xl md:text-3xl">
+            <p class="text-xs lg:text-lg mx-2 text-dark-400">High:</p>
+            ${weather.temp_max}
+        </div>
+        </div>
     </div>
     <img
-      class="col-span-3 md:col-span-2 w-full object-contain"
-      src="${randomImageUrlSmall}"
-      alt=""
+        class="col-span-3 md:col-span-2 w-full object-contain"
+        src="${randomImageUrlSmall}"
+        alt=""
     />
-  </div>
+    </div>
 
     `;
 
-  // console.log(post)
   return post;
 }
 
@@ -242,9 +297,10 @@ async function createEntries() {
     element.classList.add(
       "mt-6",
       "p-1",
+      "sm:px-1",
       "md:p-4",
       "mx-1",
-      "md:mx-10",
+      "md:mx-2",
       "lg:mx-4",
       "bg-dark-500",
       "rounded",
@@ -264,7 +320,7 @@ async function createEntries() {
       let confirmation = confirm(
         "Are you sure you want to delete this entry? This CANNOT be undone!"
       );
-      if (confirmation == true) {
+      if (confirmation === true) {
         removeEntry(index);
         createEntries();
       }
@@ -282,7 +338,6 @@ const removeEntry = (index) => {
   localStorage.setItem("entries", stringifiedEntries);
 
   //   createEntries();
-  console.log(entries);
 };
 
 createEntries();

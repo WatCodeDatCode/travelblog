@@ -9,20 +9,20 @@
 
   <body class="text-dark-600 bg-light-200 font-mono">
     <div class="grid lg:grid-cols-5">
-        <div class="h-full min-h-screen bg-dark-500"></div>
-        <div class="lg:col-span-4">
-      <h1 class="text-5xl text-center text-primary-500">Travel Blog</h1>
-      <div class="mx-3 text-center">
-        <button
-          id="open-modal-window"
-          class="w-1/2 py-1 text-xl bg-blue-500 text-white font-bold rounded"
-        >
-          Add new entry
-        </button>
-      </div>
+      <div class="h-full lg:min-h-screen bg-dark-500"></div>
+      <div class="lg:col-span-4">
+        <h1 class="text-5xl text-center text-primary-500">Travel Blog</h1>
+        <div class="mx-3 text-center">
+          <button
+            id="open-modal-window"
+            class="w-1/2 py-1 text-xl bg-blue-500 text-white font-bold rounded"
+          >
+            Add new entry
+          </button>
+        </div>
 
-      <!-- For prototyping! -->
-      <!-- <div class="mt-4">
+        <!-- For prototyping! -->
+        <!-- <div class="mt-4">
         <div class="p-1 md:p-4 mx-1 md:mx-10 bg-dark-500 rounded relative">
           <div class="card">
             <span class="badge">FO</span>
@@ -77,10 +77,26 @@
           </div>
         </div>
       </div> -->
-      <!-- END PROTOTYPING -->
+        <!-- END PROTOTYPING -->
+        <div id="sort-div" class="container mx-auto">
+          <form>
+            <select
+              name="sort"
+              id="order-select"
+              class="block appearance-none w-1/4 mx-auto text-black bg-primary-300 border hover:border-primary-600 px-2 py-1 rounded shadow leading-tight focus:shadow-outline"
+            >
+              <option value="ASC" id="asc-option">
+                Arrival date (ascending)
+              </option>
+              <option value="DESC" id="desc-option">
+                Arrival date (descending)
+              </option>
+            </select>
+          </form>
+        </div>
 
-      <div id="blog-entries" class="m-0 lg:m-6"></div>
-    </div>
+        <div id="blog-entries" class="m-0 lg:m-6"></div>
+      </div>
 
       <!-- START FORM -->
       <div id="modal-window" class="modal">
@@ -88,9 +104,8 @@
           class="modal-content container bg-light-300 flex mx-auto my-auto p-5 rounded"
         >
           <form id="add-new-entry" class="w-full pt-2">
-            <span
-              class="close close_modal hover:text-primary-800 text-lg"
-              >&times;</span 
+            <span class="close close_modal hover:text-primary-800 text-lg"
+              >&times;</span
             >
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
