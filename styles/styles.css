@@ -26197,6 +26197,12 @@ video {
   transform: translate(-50%, -50%);
 }
 
+@media only screen and (max-width: 1024px) {
+  .hero {
+    height: 85vh;
+  }
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
