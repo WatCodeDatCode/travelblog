@@ -19,6 +19,20 @@ const tripFromDateInput = document.getElementById("from-date-input");
 const tripToDateInput = document.getElementById("to-date-input");
 const tripSummaryInput = document.getElementById("trip-summary-input");
 
+// Scroll elements
+const jumpToContentButton = document.getElementById('jump-to-content');
+const contentElement = document.getElementById('content');
+
+// Smooth scroll function
+const scrollToContent = () => {
+  contentElement.scrollIntoView({
+    behavior: 'smooth'
+  });
+}
+
+// Scroll to content on button click
+jumpToContentButton.addEventListener("click", scrollToContent);
+
 // Sort select elements
 const sortDiv = document.getElementById("sort-div");
 const orderSelect = document.getElementById("order-select");
@@ -87,9 +101,8 @@ tripFromDateInput.onchange = function () {
 // Only show sorting option if more than one object exists for entries
 const showSortDiv = () => {
   let entries = localStorage.getItem("entries");
-  let parsedEntries = JSON.parse(entries);
 
-  if (parsedEntries[1]) {
+  if (JSON.parse(entries)[1]) {
     sortDiv.style.display = "block";
   } else {
     sortDiv.style.display = "none";
@@ -169,15 +182,16 @@ const saveEntry = (entry) => {
 };
 
 const getEntries = () => {
-  showSortDiv();
   let entries = localStorage.getItem("entries");
 
-  if (!entries) {
+  if (!entries || entries == '[]') {
+    sortDiv.style.display = "none";
     return exampleEntry;
   }
 
   const parsedEntries = JSON.parse(entries);
   const sortedEntries = sortEntries(parsedEntries);
+  showSortDiv();
 
   return sortedEntries;
 };
@@ -228,7 +242,7 @@ async function createSingleEntry(entry) {
   let post = `
     <div class="card">
     <span class="badge">${entry.country}</span>
-    <img class="w-full h-1/2 object-cover" src="${randomImageUrl}" alt="" />
+    <img class="w-full max-h-40 object-cover" src="${randomImageUrl}" alt="Random image from picsum" />
     <div class="px-6 py-4">
         <h3
         class="text-primary-600 text-3xl sm:text-4xl xl:text-6xl text-center"
@@ -255,7 +269,7 @@ async function createSingleEntry(entry) {
         <div class="flex flex-wrap w-full">
         <p class="w-full text-xl md:text-4xl mt-8">Current weather</p>
         <img
-            class="mx-auto self-start w-1/6 lg:w-1/3"
+            class="mx-auto self-start max-h-30 w-1/6 lg:w-1/3"
             src="${weather.image}"
             alt=""
         />
@@ -293,15 +307,18 @@ async function createEntries() {
   blogEntriesSection.innerHTML = ""; // Clears entries to avoid constantly re-adding the whole list
 
   for (const [index, entry] of getEntries().entries()) {
-    const element = document.createElement("div");
+    const element = document.createElement("article");
     element.classList.add(
-      "mt-6",
+      "mb-6",
+      "md:mb-8",
+      "xl:mb-12",
       "p-1",
       "sm:px-1",
       "md:p-4",
-      "mx-1",
+      "mx-0",
       "md:mx-2",
       "lg:mx-4",
+      "xl:mx-16",
       "bg-dark-500",
       "rounded",
       "relative"
@@ -337,7 +354,7 @@ const removeEntry = (index) => {
   const stringifiedEntries = JSON.stringify(entries);
   localStorage.setItem("entries", stringifiedEntries);
 
-  //   createEntries();
+  createEntries();
 };
 
 createEntries();
