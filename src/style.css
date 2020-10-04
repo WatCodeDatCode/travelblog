@@ -99,8 +99,8 @@
 }
 
 .jump {
-  position: absolute;
-  bottom: 0%;
+  position: relative;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   animation: fadeInAndOut infinite 5s;
@@ -177,16 +177,13 @@
     width: 100%;
     height: auto;
   }
+  .jump {
+    top: 60%;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
   .hero {
     height: 85vh;
-  }
-}
-
-@media only screen and (min-width: 1024px) {
-  .jump {
-    transform: translate(20%, -50%);
   }
 }

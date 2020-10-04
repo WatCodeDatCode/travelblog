@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
 
-  <body class="text-dark-600 bg-light-200 font-mono">
+  <body class="text-dark-600 bg-light-200 font-mono w-full">
     <div class="grid lg:grid-cols-5">
       <div class="h-full lg:min-h-screen bg-secondary-400 hover:bg-primary-400">
         <img
-          class="w-20 lg:w-48 mx-4 my-2 lg:my-6 lg:fixed"
+          class="w-12 sm:w-20 lg:w-48 mx-4 my-2 lg:my-6 lg:fixed"
           src="assets/images/logo.png"
           alt="Gullible's Travels Logo"
         />
@@ -79,7 +79,7 @@
           <div
             class="modal-content w-full container bg-light-300 flex mx-auto my-auto p-5 rounded"
           >
-            <form id="add-new-entry" class="w-full pt-2">
+            <form id="add-new-entry" class="pt-2">
               <span
                 class="close close_modal hover:text-primary-800 text-lg lg:text-2xl"
                 >&times;</span
@@ -424,7 +424,6 @@
                   </label>
                   <textarea
                     id="trip-summary-input"
-                    rows="6"
                     class="form-input focus:outline-none focus:bg-white focus:border-primary-300"
                   ></textarea>
                 </div>
