@@ -26115,8 +26115,8 @@ video {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-right: 2rem;
-  border-radius: 0.25rem;
   line-height: 1.25;
+  border-radius: 0.25rem;
 }
 
 .card {
@@ -26160,6 +26160,49 @@ video {
   margin-top: 0.25rem;
 }
 
+.entry {
+  margin-bottom: 1.5rem;
+  padding: 0.25rem;
+  margin-left: 0;
+  margin-right: 0;
+  --bg-opacity: 1;
+  background-color: #31393c;
+  background-color: rgba(49, 57, 60, var(--bg-opacity));
+  border-radius: 0.25rem;
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .entry {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .entry {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .entry {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .entry {
+    margin-bottom: 3rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+  }
+}
+
 .modal {
   display: none;
   position: fixed;
@@ -26195,6 +26238,22 @@ video {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width:640px) {
+  .modal-content {
+    transform: translate(-50%, 5%);
+    width: 95%;
+    max-height: 100vh;
+  }
+}
+
+@media only screen and (max-width:400px) {
+  .modal-content {
+    transform: translate(-50%, 0%);
+    width: 100%;
+    height: auto;
+  }
 }
 
 @media only screen and (max-width: 1024px) {

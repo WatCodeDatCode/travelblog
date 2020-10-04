@@ -55,14 +55,14 @@
         <!-- START FORM MODAL -->
         <div id="modal-window" class="modal">
           <div
-            class="modal-content container bg-light-300 flex mx-auto my-auto p-5 rounded"
+            class="modal-content w-full container bg-light-300 flex mx-auto my-auto p-5 rounded"
           >
             <form id="add-new-entry" class="w-full pt-2">
-              <span class="close close_modal hover:text-primary-800 text-lg"
+              <span class="close close_modal hover:text-primary-800 text-lg lg:text-2xl"
                 >&times;</span
               >
               <div class="flex flex-wrap -mx-3 mb-6">
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <div class="w-full sm:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     for="city-input"
                     class="block uppercase tracking-wide text-dark-600 text-xs font-bold mb-2"
@@ -77,7 +77,7 @@
                     required
                   />
                 </div>
-                <div class="w-full md:w-1/2 px-3">
+                <div class="w-full sm:w-1/2 px-3">
                   <label
                     for="country-input"
                     class="block uppercase tracking-wide text-dark-600 text-xs font-bold mb-2"
@@ -360,7 +360,7 @@
                 </div>
               </div>
               <div class="flex flex-wrap -mx-3 mb-6">
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <div class="w-full sm:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     for="from-date-input"
                     class="block uppercase tracking-wide text-dark-600 text-xs font-bold mb-2"
@@ -375,7 +375,7 @@
                     required
                   />
                 </div>
-                <div class="w-full md:w-1/2 px-3">
+                <div class="w-full sm:w-1/2 px-3">
                   <label
                     for="to-date-input"
                     class="block uppercase tracking-wide text-dark-600 text-xs font-bold mb-2"
@@ -401,15 +401,14 @@
                   </label>
                   <textarea
                     id="trip-summary-input"
-                    rows="10"
+                    rows="6"
                     class="form-input focus:outline-none focus:bg-white focus:border-primary-300"
-                    required
                   ></textarea>
                 </div>
               </div>
 
               <button
-                class="btn bg-primary-500 hover:bg-primary-600 text-white focus:outline-none focus:shadow-outline"
+                class="btn w-full sm:w-1/2 md:w-auto bg-primary-500 hover:bg-primary-600 text-white focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Add entry

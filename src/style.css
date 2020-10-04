@@ -19,7 +19,7 @@
 }
 
 .form-input {
-  @apply block appearance-none w-full bg-light-200 border text-dark-600 py-3 px-4 pr-8 rounded leading-tight;
+  @apply block appearance-none w-full bg-light-200 border text-dark-600 py-3 px-4 pr-8 leading-tight rounded;
 }
 
 .card {
@@ -32,6 +32,33 @@
 
 .delete {
   @apply text-white cursor-pointer font-bold absolute top-0 right-0 mr-3 mt-1;
+}
+
+.entry {
+  @apply mb-6 p-1 mx-0 bg-dark-500 rounded relative;
+}
+
+@screen sm {
+  .entry {
+    @apply px-1;
+  }
+}
+@screen md {
+  .entry {
+    @apply mb-8 p-4 mx-2;
+  }
+}
+
+@screen lg {
+  .entry {
+    @apply mx-4;
+  }
+}
+
+@screen xl {
+  .entry {
+    @apply mb-12 mx-16;
+  }
 }
 
 .modal {
@@ -69,6 +96,22 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width:640px) {
+  .modal-content {
+    transform: translate(-50%, 5%);
+    width: 95%;
+    max-height: 100vh;
+  }
+}
+
+@media only screen and (max-width:400px) {
+  .modal-content {
+    transform: translate(-50%, 0%);
+    width: 100%;
+    height: auto;
+  }
 }
 
 @media only screen and (max-width: 1024px) {

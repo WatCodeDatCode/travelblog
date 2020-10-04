@@ -20,15 +20,15 @@ const tripToDateInput = document.getElementById("to-date-input");
 const tripSummaryInput = document.getElementById("trip-summary-input");
 
 // Scroll elements
-const jumpToContentButton = document.getElementById('jump-to-content');
-const contentElement = document.getElementById('content');
+const jumpToContentButton = document.getElementById("jump-to-content");
+const contentElement = document.getElementById("content");
 
 // Smooth scroll function
 const scrollToContent = () => {
   contentElement.scrollIntoView({
-    behavior: 'smooth'
+    behavior: "smooth",
   });
-}
+};
 
 // Scroll to content on button click
 jumpToContentButton.addEventListener("click", scrollToContent);
@@ -184,7 +184,7 @@ const saveEntry = (entry) => {
 const getEntries = () => {
   let entries = localStorage.getItem("entries");
 
-  if (!entries || entries == '[]') {
+  if (!entries || entries == "[]") {
     sortDiv.style.display = "none";
     return exampleEntry;
   }
@@ -308,21 +308,7 @@ async function createEntries() {
 
   for (const [index, entry] of getEntries().entries()) {
     const element = document.createElement("article");
-    element.classList.add(
-      "mb-6",
-      "md:mb-8",
-      "xl:mb-12",
-      "p-1",
-      "sm:px-1",
-      "md:p-4",
-      "mx-0",
-      "md:mx-2",
-      "lg:mx-4",
-      "xl:mx-16",
-      "bg-dark-500",
-      "rounded",
-      "relative"
-    );
+    element.classList.add("entry");
 
     const post = await createSingleEntry(entry);
     element.innerHTML = post;
