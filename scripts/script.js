@@ -13,7 +13,7 @@ let exampleEntry = [
     departure_date: today,
     trip_summary: `This is an example of how each post will look. A random image will automatically be generated and the current weather will of that destination will be displayed under each summary. 
         Delete this entry by clicking the 'x' in the upper right corner after adding your own!`,
-  }
+  },
 ];
 
 // Form elements
@@ -27,6 +27,21 @@ const tripSummaryInput = document.getElementById("trip-summary-input");
 // Scroll elements
 const jumpToContentButton = document.getElementById("jump-to-content");
 const contentElement = document.getElementById("content");
+
+// Variable for weather API
+const apiKey = "03bbfddd33521d0c17e64ea09b10e111";
+
+// Variable for Google API
+const mapApiKey = "AIzaSyCLtPYNl2W9WNdJVCMjXURmGwnTJrTaeOQ";
+
+// Async function to fetch weather from API
+async function getWeatherInformation(city) {
+  let response = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+  );
+  let data = await response.json();
+  return data;
+}
 
 // Smooth scroll function
 const scrollToContent = () => {
@@ -49,9 +64,6 @@ const closeModalWindowSpan = document.getElementsByClassName("close")[0];
 
 // Blog element
 const blogEntriesSection = document.getElementById("blog-entries");
-
-// Variable for weather API
-const apiKey = "03bbfddd33521d0c17e64ea09b10e111";
 
 // *** MODAL WINDOW FUNCTIONS *** //
 // When the user clicks on the button to add new entry, open modal form
@@ -210,15 +222,6 @@ const randomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-// Async function to fetch weather from API
-async function getWeatherInformation(city) {
-  let response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
-  );
-  let data = await response.json();
-  return data;
-}
-
 async function createSingleEntry(entry) {
   let randomImageUrl = `https://source.unsplash.com/random/800x700?random=${randomNumber(
     1,
@@ -266,7 +269,9 @@ async function createSingleEntry(entry) {
     <div class="weather-card h-auto">
     <div class="col-span-3 md:col-span-1 w-full flex flex-wrap mb-6 px-2">
         <div class="flex flex-wrap w-full">
-        <p class="w-full text-xl md:text-2xl xl:text-4xl mt-8">Current weather in ${entry.city}</p>
+        <p class="w-full text-xl md:text-2xl xl:text-4xl mt-8">Current weather in ${
+          entry.city
+        }</p>
         <img
             class="mx-auto self-start max-h-30 w-1/6 lg:w-1/3"
             src="${weather.image}"
@@ -289,11 +294,11 @@ async function createSingleEntry(entry) {
         </div>
         </div>
     </div>
-    <img
-        class="col-span-3 md:col-span-2 w-full object-contain"
-        src="${randomImageUrlSmall}"
-        alt=""
-    />
+    <iframe
+      class="h-full min-h-30 w-full col-span-3 md:col-span-2"
+      frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/place?key=${mapApiKey}&q=${entry.city}" allowfullscreen>
+    </iframe>
     </div>
 
     `;
