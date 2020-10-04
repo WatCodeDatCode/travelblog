@@ -10,17 +10,14 @@ This project is a simple travel blog including new entry submission form, as req
 ## Features
 * Add travel blog entry to local storage through submission form
 * Display entries on page after submission
+* Each entry includes a random header image, current weather of destination, and embedded google map
 * Allow removal of entries from page and local storage
 
-To Dos:
-* Improve styling of elements
-* Add current weather of previous travel destinations from fetched Weather API
-
 Potential nice-to-haves:
-* Fetch location of destinations using Google Maps API
-* Show all entered travelled locations on map
+* Show all entered travelled locations on a single map
 
 ## Technologies
 Project is created with:
 * [Tailwind CSS](https://tailwindcss.com/ "TailwindCSS Homepage") version: 1.8.10
 * [Weather API](https://openweathermap.org/api "Weather API documentation")
+* [Google Maps Embed API](https://developers.google.com/maps/documentation/embed/get-started "Google Maps Embed API documentation")
