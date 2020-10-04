@@ -1,14 +1,19 @@
+// Variable for current date to be used in functions / example entry
+let today = new Date();
+let currentDay = today.getDate();
+let currentMonth = today.getMonth() + 1; //January is 0!!
+let currentYear = today.getFullYear();
+
 // Example entry to be set as initial entry of blog before first posts made to local storage
 let exampleEntry = [
   {
     city: "Hamburg",
     country: "DE",
-    arrival_date: "2020-09-02",
-    departure_date: "2020-09-15",
-    trip_summary: `This was a place that I went to once. It was pretty cool I guess, like the Alster and the "water" that comes from it.
-        
+    arrival_date: today,
+    departure_date: today,
+    trip_summary: `This is an example of how each post will look. A random image will automatically be generated and the current weather will of that destination will be displayed under each summary. 
         Delete this entry by clicking the 'x' in the upper right corner after adding your own!`,
-  },
+  }
 ];
 
 // Form elements
@@ -68,12 +73,6 @@ window.onclick = function (event) {
 // *** END MODAL WINDOW FUNCTIONS *** //
 
 // *** DATE FUNCTIONS *** //
-// Variable for current date
-let today = new Date();
-let currentDay = today.getDate();
-let currentMonth = today.getMonth() + 1; //January is 0!!
-let currentYear = today.getFullYear();
-
 // Function to set max input dates of trip to current date
 const setMaxDateToCurrentDate = () => {
   if (currentDay < 10) {

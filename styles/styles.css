@@ -26241,8 +26241,8 @@ video {
 }
 
 .jump {
-  position: relative;
-  bottom: -80%;
+  position: absolute;
+  bottom: 0%;
   left: 50%;
   transform: translate(-50%, -50%);
   animation: fadeInAndOut infinite 5s;
@@ -26250,6 +26250,14 @@ video {
   -moz-animation: fadeInAndOut infinite 5s;
   -o-animation: fadeInAndOut infinite 5s;
   -ms-animation: fadeInAndOut infinite 5s;
+}
+
+.jump:hover {
+  animation: none;
+  -webkit-animation: none;
+  -moz-animation: none;
+  -o-animation: none;
+  -ms-animation: none;
 }
 
 @keyframes fadeInAndOut {
@@ -26291,6 +26299,12 @@ video {
 @media only screen and (max-width: 1024px) {
   .hero {
     height: 85vh;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .jump {
+    transform: translate(20%, -50%);
   }
 }
 
