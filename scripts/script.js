@@ -340,7 +340,6 @@ const removeEntry = (index) => {
   const stringifiedEntries = JSON.stringify(entries);
   localStorage.setItem("entries", stringifiedEntries);
 
-  createEntries();
 };
 
 createEntries();
