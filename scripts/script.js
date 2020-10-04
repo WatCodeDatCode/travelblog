@@ -267,11 +267,11 @@ async function createSingleEntry(entry) {
     <div class="weather-card h-auto">
     <div class="col-span-3 md:col-span-1 w-full flex flex-wrap mb-6 px-2">
         <div class="flex flex-wrap w-full">
-        <p class="w-full text-xl md:text-4xl mt-8">Current weather</p>
+        <p class="w-full text-xl md:text-2xl xl:text-4xl mt-8">Current weather in ${entry.city}</p>
         <img
             class="mx-auto self-start max-h-30 w-1/6 lg:w-1/3"
             src="${weather.image}"
-            alt=""
+            alt="Current weather icon"
         />
 
         <div class="w-full text-3xl md:text-5xl tracking-tighter">
@@ -339,7 +339,6 @@ const removeEntry = (index) => {
 
   const stringifiedEntries = JSON.stringify(entries);
   localStorage.setItem("entries", stringifiedEntries);
-
 };
 
 createEntries();

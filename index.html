@@ -10,19 +10,37 @@
   <body class="text-dark-600 bg-light-200 font-mono">
     <div class="grid lg:grid-cols-5">
       <div class="h-full lg:min-h-screen bg-secondary-400 hover:bg-primary-400">
-        <img class="w-20 lg:w-48 mx-4 my-2 lg:my-6 lg:fixed" src="assets/images/logo.png" alt="Gullible's Travels Logo">
+        <img
+          class="w-20 lg:w-48 mx-4 my-2 lg:my-6 lg:fixed"
+          src="assets/images/logo.png"
+          alt="Gullible's Travels Logo"
+        />
       </div>
       <div class="lg:col-span-4">
         <div class="hero">
           <div class="hero-text">
-            <h1 class="text-4xl lg:text-6xl font-extrabold text-primary-500">Travel Blog</h1>
-              <button
-                id="jump-to-content"
-                class="text-xl bg-transparent text-light-300 font-bold"
-              >
-                Let's dive in
-              </button>
+            <h1 class="text-4xl lg:text-6xl font-extrabold text-primary-500">
+              Travel Blog
+            </h1>
           </div>
+          <button
+            id="jump-to-content"
+            class="btn jump text-xl lg:text-4xl xl:text-5xl bg-transparent text-light-300 hover:text-secondary-400"
+          >
+            Dive in
+            <svg
+              class="mx-auto h-12 w-auto"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M15.707 4.293a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L10 8.586l4.293-4.293a1 1 0 011.414 0zm0 6a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L10 14.586l4.293-4.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
         </div>
         <main id="content">
           <div class="my-6 xl:my-10 text-center">
@@ -49,7 +67,9 @@
               </select>
             </form>
           </div>
-          <div id="blog-entries" class="m-0 lg:mx-6">No entries, please add a new post.</div>
+          <div id="blog-entries" class="m-0 lg:mx-6">
+            No entries, please add a new post.
+          </div>
         </main>
 
         <!-- START FORM MODAL -->
@@ -58,7 +78,8 @@
             class="modal-content w-full container bg-light-300 flex mx-auto my-auto p-5 rounded"
           >
             <form id="add-new-entry" class="w-full pt-2">
-              <span class="close close_modal hover:text-primary-800 text-lg lg:text-2xl"
+              <span
+                class="close close_modal hover:text-primary-800 text-lg lg:text-2xl"
                 >&times;</span
               >
               <div class="flex flex-wrap -mx-3 mb-6">

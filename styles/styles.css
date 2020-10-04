@@ -26240,7 +26240,39 @@ video {
   transform: translate(-50%, -50%);
 }
 
-@media only screen and (max-width:640px) {
+.jump {
+  position: relative;
+  bottom: -80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: fadeInAndOut infinite 5s;
+  -webkit-animation: fadeInAndOut infinite 5s;
+  -moz-animation: fadeInAndOut infinite 5s;
+  -o-animation: fadeInAndOut infinite 5s;
+  -ms-animation: fadeInAndOut infinite 5s;
+}
+
+@keyframes fadeInAndOut {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadeInAndOut {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@media only screen and (max-width: 640px) {
   .modal-content {
     transform: translate(-50%, 5%);
     width: 95%;
@@ -26248,7 +26280,7 @@ video {
   }
 }
 
-@media only screen and (max-width:400px) {
+@media only screen and (max-width: 400px) {
   .modal-content {
     transform: translate(-50%, 0%);
     width: 100%;
