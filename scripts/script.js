@@ -29,6 +29,7 @@ const tripSummaryInput = document.getElementById("trip-summary-input");
 
 // Scroll elements
 const jumpToContentButton = document.getElementById("jump-to-content");
+const jumpUpToContentButton = document.getElementById("jump-up-to-content");
 const contentElement = document.getElementById("content");
 
 // Variable for weather API
@@ -55,6 +56,7 @@ const scrollToContent = () => {
 
 // Scroll to content on button click
 jumpToContentButton.addEventListener("click", scrollToContent);
+jumpUpToContentButton.addEventListener("click", scrollToContent);
 
 // Sort select elements
 const sortDiv = document.getElementById("sort-div");

@@ -15,34 +15,31 @@
   <body class="text-dark-600 bg-light-200 font-mono w-full">
     <div class="grid lg:grid-cols-5">
       <div
-        class="h-full relative lg:min-h-screen lg:col-span-1 flex justify-between lg:justify-end lg:items-around bg-secondary-400 hover:bg-primary-400"
+        class="h-full relative lg:min-h-screen flex justify-between lg:justify-end lg:items-around bg-secondary-400 hover:bg-primary-400"
       >
         <a href="#" class="lg:fixed w-12 sm:w-20 lg:w-32 mx-4 my-2 lg:my-6">
-          <img
-            src="assets/images/logo.png"
-            alt="Gullible's Travels Logo"
-          />
+          <img src="assets/images/logo.png" alt="Gullible's Travels Logo" />
         </a>
         <nav class="lg:fixed lg:mt-64">
           <ul
             class="flex flex-col flex-wrap lg:justify-end items-end list-none text-4xl text-dark-400 transition ease-in-out duration-400"
           >
-            <a
-              class="pr-3 lg:border lg:border-r-8 border-transparent hover:text-light-100"
-              href="#"
-              ><li>Home</li></a
-            >
-            <a
-              class="pr-3 lg:border-r-8 lg:border-dark-500 text-dark-800 hover:text-light-200 hover:border-secondary-400"
-              href="#"
-              ><li>Blog</li></a
-            >
-            <a
-              class="pr-3 lg:border lg:border-r-8 border-transparent hover:text-light-100"
-              href="#"
-              ><li>Contact</li></a
-            >
+            <a class="inactive-nav" href="#"><li>Home</li></a>
+            <a class="active-nav" href="#"><li>Blog</li></a>
+            <a class="inactive-nav" href="#"><li>Contact</li></a>
           </ul>
+          <svg
+            class="lg:hidden h-10"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+              clip-rule="evenodd"
+            />
+          </svg>
         </nav>
       </div>
       <div class="lg:col-span-4">
@@ -100,6 +97,28 @@
             </form>
           </div>
           <div id="blog-entries" class="m-0 lg:mx-6"></div>
+          <div class="relative">
+            <button
+              id="jump-up-to-content"
+              class="jump-up btn transition ease-out duration-100"
+            >
+              <svg
+                class="mx-auto h-8 w-auto"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                />
+              </svg>
+              Dive back in
+            </button>
+          </div>
         </main>
 
         <!-- START FORM MODAL -->
@@ -452,7 +471,7 @@
                   </label>
                   <textarea
                     id="trip-summary-input"
-                    class="form-input focus:outline-none focus:bg-white focus:border-primary-300"
+                    class="h-10 lg:h-30 form-input focus:outline-none focus:bg-white focus:border-primary-300"
                   ></textarea>
                 </div>
               </div>
@@ -469,12 +488,12 @@
       </div>
       <!-- END FORM -->
     </div>
-    <footer class="h-auto bg-primary-500">
+    <footer class="h-auto py-8 bg-primary-500">
       <div class="flex justify-center">
         <a href="#"
           ><img
-            class="h-16 mt-3"
-            src="assets/images/logo.png"
+            class="h-16 lg:h-24 mb-3"
+            src="assets/images/favicon.png"
             alt="Gullible's Travels Logo"
         /></a>
       </div>

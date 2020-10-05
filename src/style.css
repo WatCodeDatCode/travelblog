@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+.active-nav {
+  @apply font-bold pr-3 text-dark-800;
+}
+
+.active-nav:hover {
+  @apply text-light-200 border-secondary-500;
+}
+
+.inactive-nav {
+  @apply pr-3 border-transparent;
+}
+
+.inactive-nav:hover {
+  @apply text-secondary-100;
+}
+
 .sort {
   @apply block appearance-none w-auto text-black bg-primary-300 cursor-pointer px-2 py-1 rounded leading-tight;
 }
@@ -35,11 +51,11 @@
 }
 
 .add-entry-button {
-  @apply transition ease-out duration-500 py-3 px-6 text-xl bg-secondary-500 text-white font-bold rounded;
+  @apply py-3 px-6 text-xl bg-secondary-500 text-white font-bold rounded;
 }
 
 .add-entry-button:hover {
-  @apply transform scale-125 bg-primary-600;
+  @apply transform scale-110 bg-primary-600;
 }
 
 .entry {
@@ -68,6 +84,18 @@
   -ms-animation: none;
 }
 
+.jump-up {
+  @apply text-xl text-dark-900 mt-4;
+  position: relative;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.jump-up:hover {
+  @apply text-dark-700 font-bold;
+}
+
 .social-icons {
   @apply mx-4 my-3 text-4xl text-dark-700;
 }
@@ -89,6 +117,14 @@
 }
 
 @screen lg {
+  .active-nav {
+    @apply border-r-8 border-primary-600;
+  }
+
+  .inactive-nav {
+    @apply border border-r-8;
+  }
+
   .jump {
     @apply text-4xl;
   }
