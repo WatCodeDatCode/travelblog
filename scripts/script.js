@@ -11,8 +11,7 @@ let exampleEntry = [
     country: "DE",
     arrival_date: today,
     departure_date: today,
-    trip_summary: `
-    This is an example of how each post will look. A random image will automatically be generated and the current weather as well as the google map of that destination will be displayed under each summary.
+    trip_summary: `This is an example of how each post will look. A random image will automatically be generated and the current weather as well as the google map of that destination will be displayed under each summary.
     
     Delete this entry by clicking the 'x' in the upper right corner after adding your own. If all entries are deleted, then this example will appear again. It's not a bug, it's a feature. ;-)
     `,

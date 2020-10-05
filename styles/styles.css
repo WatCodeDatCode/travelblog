@@ -26134,8 +26134,23 @@ video {
   padding-right: 0.5rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-  border-radius: 0.25rem;
+  margin-bottom: -0.25rem;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
   line-height: 1.25;
+}
+
+.sort:hover {
+  --bg-opacity: 1;
+  background-color: #141718;
+  background-color: rgba(20, 23, 24, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #ffae9c;
+  color: rgba(255, 174, 156, var(--text-opacity));
+}
+
+.sort:focus {
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 }
 
 .btn {
@@ -26365,6 +26380,13 @@ video {
 }
 
 @media (min-width: 768px) {
+  .sort {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
   .entry {
     margin-bottom: 2rem;
     padding: 1rem;
@@ -26410,6 +26432,13 @@ video {
 @media (min-width: 1280px) {
   .jump {
     font-size: 3rem;
+  }
+
+  .sort {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
   }
 
   .entry {
