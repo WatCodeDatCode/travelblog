@@ -26196,6 +26196,41 @@ video {
   margin-top: 0.25rem;
 }
 
+.add-entry-button {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 500ms;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-size: 1.25rem;
+  --bg-opacity: 1;
+  background-color: #6cae75;
+  background-color: rgba(108, 174, 117, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+  font-weight: 700;
+  border-radius: 0.25rem;
+}
+
+.add-entry-button:hover {
+  --transform-translate-x: 0;
+  --transform-translate-y: 0;
+  --transform-rotate: 0;
+  --transform-skew-x: 0;
+  --transform-skew-y: 0;
+  --transform-scale-x: 1;
+  --transform-scale-y: 1;
+  transform: translateX(var(--transform-translate-x)) translateY(var(--transform-translate-y)) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y));
+  --transform-scale-x: 1.25;
+  --transform-scale-y: 1.25;
+  --bg-opacity: 1;
+  background-color: #cc6048;
+  background-color: rgba(204, 96, 72, var(--bg-opacity));
+}
+
 .entry {
   margin-bottom: 1.5rem;
   padding: 0.25rem;
@@ -26206,6 +26241,52 @@ video {
   background-color: rgba(49, 57, 60, var(--bg-opacity));
   border-radius: 0.25rem;
   position: relative;
+}
+
+.jump {
+  font-size: 1.25rem;
+  background-color: transparent;
+  --text-opacity: 1;
+  color: #e7ebea;
+  color: rgba(231, 235, 234, var(--text-opacity));
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: fadeInAndOut infinite 5s;
+  -webkit-animation: fadeInAndOut infinite 5s;
+  -moz-animation: fadeInAndOut infinite 5s;
+  -o-animation: fadeInAndOut infinite 5s;
+  -ms-animation: fadeInAndOut infinite 5s;
+}
+
+.jump:hover {
+  --text-opacity: 1;
+  color: #89be91;
+  color: rgba(137, 190, 145, var(--text-opacity));
+  animation: none;
+  -webkit-animation: none;
+  -moz-animation: none;
+  -o-animation: none;
+  -ms-animation: none;
+}
+
+.social-icons {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 2.25rem;
+  --text-opacity: 1;
+  color: #1d2224;
+  color: rgba(29, 34, 36, var(--text-opacity));
+}
+
+.social-icons:hover {
+  --text-opacity: 1;
+  color: #eff2f1;
+  color: rgba(239, 242, 241, var(--text-opacity));
+  transform: scale(1.1);
 }
 
 @media (min-width: 640px) {
@@ -26225,6 +26306,17 @@ video {
 }
 
 @media (min-width: 1024px) {
+  .jump {
+    font-size: 2.25rem;
+  }
+
+  .add-entry-button {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
   .entry {
     margin-left: 1rem;
     margin-right: 1rem;
@@ -26232,6 +26324,10 @@ video {
 }
 
 @media (min-width: 1280px) {
+  .jump {
+    font-size: 3rem;
+  }
+
   .entry {
     margin-bottom: 3rem;
     margin-left: 4rem;
@@ -26261,7 +26357,7 @@ video {
 
 .hero {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../assets/images/ACR06280.jpg");
+    url("../assets/images/faroe_island_waterfall.jpg");
   height: 100vh;
   background-repeat: no-repeat;
   background-position: center;
@@ -26276,43 +26372,25 @@ video {
   transform: translate(-50%, -50%);
 }
 
-.jump {
-  position: relative;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: fadeInAndOut infinite 5s;
-  -webkit-animation: fadeInAndOut infinite 5s;
-  -moz-animation: fadeInAndOut infinite 5s;
-  -o-animation: fadeInAndOut infinite 5s;
-  -ms-animation: fadeInAndOut infinite 5s;
-}
-
-.jump:hover {
-  animation: none;
-  -webkit-animation: none;
-  -moz-animation: none;
-  -o-animation: none;
-  -ms-animation: none;
-}
-
 @keyframes fadeInAndOut {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
 
   50% {
-    opacity: 0;
+    opacity: 0.2;
   }
 }
 
 @-webkit-keyframes fadeInAndOut {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
 
   50% {
-    opacity: 0;
+    opacity: 0.2;
   }
 }
 

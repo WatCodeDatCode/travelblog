@@ -34,8 +34,47 @@
   @apply text-white cursor-pointer font-bold absolute top-0 right-0 mr-3 mt-1;
 }
 
+.add-entry-button {
+  @apply transition ease-out duration-500 py-3 px-6 text-xl bg-secondary-500 text-white font-bold rounded;
+}
+
+.add-entry-button:hover {
+  @apply transform scale-125 bg-primary-600;
+}
+
 .entry {
   @apply mb-6 p-1 mx-0 bg-dark-500 rounded relative;
+}
+
+.jump {
+  @apply text-xl bg-transparent text-light-300;
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: fadeInAndOut infinite 5s;
+  -webkit-animation: fadeInAndOut infinite 5s;
+  -moz-animation: fadeInAndOut infinite 5s;
+  -o-animation: fadeInAndOut infinite 5s;
+  -ms-animation: fadeInAndOut infinite 5s;
+}
+
+.jump:hover {
+  @apply text-secondary-400;
+  animation: none;
+  -webkit-animation: none;
+  -moz-animation: none;
+  -o-animation: none;
+  -ms-animation: none;
+}
+
+.social-icons {
+  @apply mx-4 my-3 text-4xl text-dark-700;
+}
+
+.social-icons:hover {
+  @apply text-light-200;
+  transform: scale(1.1);
 }
 
 @screen sm {
@@ -50,12 +89,23 @@
 }
 
 @screen lg {
+  .jump {
+    @apply text-4xl;
+  }
+
+  .add-entry-button {
+    @apply py-5 px-8;
+  }
+
   .entry {
     @apply mx-4;
   }
 }
 
 @screen xl {
+  .jump {
+    @apply text-5xl;
+  }
   .entry {
     @apply mb-12 mx-16;
   }
@@ -83,7 +133,7 @@
 
 .hero {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../assets/images/ACR06280.jpg");
+    url("../assets/images/faroe_island_waterfall.jpg");
   height: 100vh;
   background-repeat: no-repeat;
   background-position: center;
@@ -98,68 +148,53 @@
   transform: translate(-50%, -50%);
 }
 
-.jump {
-  position: relative;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: fadeInAndOut infinite 5s;
-  -webkit-animation: fadeInAndOut infinite 5s;
-  -moz-animation: fadeInAndOut infinite 5s;
-  -o-animation: fadeInAndOut infinite 5s;
-  -ms-animation: fadeInAndOut infinite 5s;
-}
-
-.jump:hover {
-  animation: none;
-  -webkit-animation: none;
-  -moz-animation: none;
-  -o-animation: none;
-  -ms-animation: none;
-}
-
 @keyframes fadeInAndOut {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
-    opacity: 0;
+    opacity: 0.2;
   }
 }
 
 @-moz-keyframes fadeInAndOut {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
-    opacity: 0;
+    opacity: 0.2;
   }
 }
 
 @-webkit-keyframes fadeInAndOut {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
-    opacity: 0;
+    opacity: 0.2;
   }
 }
 
 @-o-keyframes fadeInAndOut {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
-    opacity: 0;
+    opacity: 0.2;
   }
 }
 
 @-ms-keyframes fadeInAndOut {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
-    opacity: 0;
+    opacity: 0.2;
   }
 }
 

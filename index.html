@@ -5,20 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gullible's Travels - Blog</title>
     <link rel="shortcut icon" href="assets/images/favicon.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
 
   <body class="text-dark-600 bg-light-200 font-mono w-full">
     <div class="grid lg:grid-cols-5">
-      <div class="h-full lg:min-h-screen bg-secondary-400 hover:bg-primary-400">
+      <div class="h-full lg:min-h-screen flex justify-end items-around bg-secondary-400 hover:bg-primary-400">
         <img
           class="w-12 sm:w-20 lg:w-48 mx-4 my-2 lg:my-6 lg:fixed"
           src="assets/images/logo.png"
           alt="Gullible's Travels Logo"
         />
+        <nav class="lg:fixed bottom-0">
+          <ul class="flex flex-cols justify-end list-none text-4xl">
+            <a class="" href="#"><li>Home</li></a>
+            <a class="" href="#"><li>Blog</li></a>
+            <a class="" href="#"><li>Contact</li></a>
+          </ul>
+        </nav>
       </div>
       <div class="lg:col-span-4">
-        <div class="hero">
+        <div class="hero relative">
           <div class="hero-text font-sans">
             <h1
               class="text-4xl lg:text-6xl font-extrabold text-primary-500 uppercase"
@@ -31,7 +42,7 @@
           </div>
           <button
             id="jump-to-content"
-            class="btn jump text-xl lg:text-4xl xl:text-5xl bg-transparent text-light-300 hover:text-secondary-400"
+            class="btn jump transition ease-out duration-100"
           >
             Dive in
             <svg
@@ -53,7 +64,7 @@
           <div class="my-6 xl:my-10 text-center">
             <button
               id="open-modal-window"
-              class="py-3 px-6 text-xl bg-secondary-500 hover:bg-primary-600 text-white font-bold rounded"
+              class="add-entry-button"
             >
               Add new entry
             </button>
@@ -82,7 +93,7 @@
           <div
             class="modal-content w-full container bg-light-300 flex mx-auto my-auto p-5 rounded"
           >
-            <form id="add-new-entry" class="pt-2">
+            <form id="add-new-entry" class="pt-2 w-full">
               <span
                 class="close close_modal hover:text-primary-800 text-lg lg:text-2xl"
                 >&times;</span
@@ -444,6 +455,18 @@
       </div>
       <!-- END FORM -->
     </div>
+    <footer class="h-auto bg-primary-500">
+      <div class="flex justify-center">
+        <a href="#"><img class="h-16 mt-3" src="assets/images/logo.png" alt="Gullible's Travels Logo"></a>
+      </div>
+      <div class="flex justify-center">
+        <!-- Add font awesome icons -->
+        <a href="#" class="fa fa-facebook social-icons"></a>
+        <a href="#" class="fa fa-twitter social-icons"></a>
+        <a href="#" class="fa fa-instagram social-icons"></a>
+        <a href="#" class="fa fa-rss social-icons"></a>
+      </div>
+    </footer>
     <script src="scripts/script.js"></script>
   </body>
 </html>
