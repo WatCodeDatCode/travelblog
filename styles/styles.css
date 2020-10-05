@@ -26117,10 +26117,6 @@ video {
   color: rgba(226, 239, 227, var(--text-opacity));
 }
 
-.nav-item {
-  display: none;
-}
-
 .sort {
   display: block;
   -webkit-appearance: none;
@@ -26503,8 +26499,12 @@ video {
 }
 
 @media only screen and (max-width: 1024px) {
+  .nav-item {
+    display: none;
+  }
+
   .hero {
-    height: 85vh;
+    height: 90vh;
   }
 }
 

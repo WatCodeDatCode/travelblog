@@ -18,10 +18,6 @@
   @apply text-secondary-100;
 }
 
-.nav-item {
-  display: none;
-}
-
 .sort {
   @apply block appearance-none w-auto text-black bg-primary-300 cursor-pointer px-2 py-1 rounded leading-tight;
 }
@@ -262,7 +258,11 @@
 }
 
 @media only screen and (max-width: 1024px) {
+  .nav-item {
+    display: none; 
+  }
+
   .hero {
-    height: 85vh;
+    height: 90vh;
   }
 }
