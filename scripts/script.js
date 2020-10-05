@@ -32,6 +32,19 @@ const jumpToContentButton = document.getElementById("jump-to-content");
 const jumpUpToContentButton = document.getElementById("jump-up-to-content");
 const contentElement = document.getElementById("content");
 
+// Nav elements
+const burgerMenu = document.getElementById("burger");
+const navItemClass = document.querySelector('.nav-item');
+
+// Function for responsive burger menu
+burgerMenu.addEventListener('click', () => {
+  if (navItemClass.style.display === 'none') {
+    document.querySelectorAll('.nav-item').forEach(el => el.style.display = 'block');
+  } else {
+    document.querySelectorAll('.nav-item').forEach(el => el.style.display = 'none');
+  }
+})
+
 // Variable for weather API
 const apiKey = "03bbfddd33521d0c17e64ea09b10e111";
 

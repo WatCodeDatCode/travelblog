@@ -26117,6 +26117,10 @@ video {
   color: rgba(226, 239, 227, var(--text-opacity));
 }
 
+.nav-item {
+  display: none;
+}
+
 .sort {
   display: block;
   -webkit-appearance: none;
@@ -26325,7 +26329,7 @@ video {
   --text-opacity: 1;
   color: #0a0b0c;
   color: rgba(10, 11, 12, var(--text-opacity));
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   position: relative;
   bottom: 5%;
   left: 50%;
@@ -26386,6 +26390,10 @@ video {
     border-right-width: 8px;
   }
 
+  .nav-item {
+    display: block;
+  }
+
   .jump {
     font-size: 2.25rem;
   }
@@ -26418,7 +26426,7 @@ video {
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 100;
   left: 0;
   top: 0;
   width: 100%;

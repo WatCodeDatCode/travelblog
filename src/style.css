@@ -18,6 +18,10 @@
   @apply text-secondary-100;
 }
 
+.nav-item {
+  display: none;
+}
+
 .sort {
   @apply block appearance-none w-auto text-black bg-primary-300 cursor-pointer px-2 py-1 rounded leading-tight;
 }
@@ -85,7 +89,7 @@
 }
 
 .jump-up {
-  @apply text-xl text-dark-900 mt-4;
+  @apply text-xl text-dark-900 mt-6;
   position: relative;
   bottom: 5%;
   left: 50%;
@@ -125,6 +129,10 @@
     @apply border border-r-8;
   }
 
+  .nav-item {
+    display: block;
+  }
+
   .jump {
     @apply text-4xl;
   }
@@ -150,7 +158,7 @@
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 100;
   left: 0;
   top: 0;
   width: 100%;
