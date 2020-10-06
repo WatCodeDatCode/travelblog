@@ -257,7 +257,7 @@ async function createSingleEntry(entry) {
     temp: data.main.temp.toFixed(1),
     temp_min: data.main.temp_min.toFixed(1),
     temp_max: data.main.temp_max.toFixed(1),
-    image: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
+    image: `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
   };
   let post = `
     <div class="card">
