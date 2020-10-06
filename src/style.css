@@ -11,7 +11,7 @@
 }
 
 .inactive-nav {
-  @apply pr-3 border-transparent;
+  @apply pr-3 border-transparent text-dark-500 ;
 }
 
 .inactive-nav:hover {
@@ -93,7 +93,7 @@
 }
 
 .jump-up {
-  @apply text-xl text-dark-900 mt-6;
+  @apply text-xl text-dark-900 mt-12;
   position: relative;
   bottom: 5%;
   left: 50%;
@@ -151,6 +151,10 @@
 
   .entry {
     @apply mx-4;
+  }
+
+  .jump-up {
+    @apply mt-6;
   }
 }
 

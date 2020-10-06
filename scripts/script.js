@@ -11,7 +11,8 @@ let exampleEntry = [
     country: "DE",
     arrival_date: today,
     departure_date: today,
-    trip_summary: `This is an example of how each post will look. A random image will automatically be generated and the current weather as well as the google map of that destination will be displayed under each summary.
+    trip_summary: `
+    This is an example of how each post will look. A random image will automatically be generated and the current weather as well as the google map of that destination will be displayed under each summary.
     
     Delete this entry by clicking the 'x' in the upper right corner after adding your own. If all entries are deleted, then this example will appear again. It's not a bug, it's a feature. ;-)
     `,
@@ -33,16 +34,20 @@ const contentElement = document.getElementById("content");
 
 // Nav elements
 const burgerMenu = document.getElementById("burger");
-const navItemClass = document.querySelector('.nav-item');
+const navItemClass = document.querySelector(".nav-item");
 
 // Function for responsive burger menu
-burgerMenu.addEventListener('click', () => {
-  if (navItemClass.style.display === 'block') {
-    document.querySelectorAll('.nav-item').forEach(el => el.style.display = 'none');
+burgerMenu.addEventListener("click", () => {
+  if (navItemClass.style.display === "block") {
+    document
+      .querySelectorAll(".nav-item")
+      .forEach((el) => (el.style.display = "none"));
   } else {
-    document.querySelectorAll('.nav-item').forEach(el => el.style.display = 'block');
+    document
+      .querySelectorAll(".nav-item")
+      .forEach((el) => (el.style.display = "block"));
   }
-})
+});
 
 // Variable for weather API
 const apiKey = "03bbfddd33521d0c17e64ea09b10e111";
@@ -244,10 +249,6 @@ async function createSingleEntry(entry) {
     1,
     900
   )}`;
-  let randomImageUrlSmall = `https://source.unsplash.com/random/700x600?random=${randomNumber(
-    1,
-    900
-  )}`;
 
   let city = entry.city;
 
@@ -278,9 +279,7 @@ async function createSingleEntry(entry) {
             <p>${formatDate(entry.departure_date)}</p>
         </div>
         </div>
-        <p class="mx-1 sm:mx-3 lg:mx-10 text-lg sm:text-xl mt-3 whitespace-pre-wrap">
-        ${entry.trip_summary}
-        </p>
+        <p class="mx-1 sm:mx-3 lg:mx-10 text-lg sm:text-xl my-3 whitespace-pre-wrap">${entry.trip_summary}</p>
     </div>
     </div>
     <div class="weather-card h-auto">
@@ -314,7 +313,9 @@ async function createSingleEntry(entry) {
     <iframe
       class="h-full min-h-30 w-full col-span-3 md:col-span-2"
       frameborder="0" style="border:0"
-      src="https://www.google.com/maps/embed/v1/place?key=${mapApiKey}&q=${entry.city}" allowfullscreen>
+      src="https://www.google.com/maps/embed/v1/place?key=${mapApiKey}&q=${
+    entry.city
+  }" allowfullscreen>
     </iframe>
     </div>
 

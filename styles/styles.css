@@ -26109,6 +26109,9 @@ video {
 .inactive-nav {
   padding-right: 0.75rem;
   border-color: transparent;
+  --text-opacity: 1;
+  color: #31393c;
+  color: rgba(49, 57, 60, var(--text-opacity));
 }
 
 .inactive-nav:hover {
@@ -26340,7 +26343,7 @@ video {
   --text-opacity: 1;
   color: #0a0b0c;
   color: rgba(10, 11, 12, var(--text-opacity));
-  margin-top: 1.5rem;
+  margin-top: 3rem;
   position: relative;
   bottom: 5%;
   left: 50%;
@@ -26426,6 +26429,10 @@ video {
   .entry {
     margin-left: 1rem;
     margin-right: 1rem;
+  }
+
+  .jump-up {
+    margin-top: 1.5rem;
   }
 }
 
