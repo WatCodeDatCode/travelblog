@@ -32,17 +32,10 @@ const scrollToContent = () => {
 // Scroll to content on button click
 jumpToContentButton.addEventListener("click", scrollToContent);
 
-// Sort select elements
-const sortDiv = document.getElementById("sort-div");
-const orderSelect = document.getElementById("order-select");
-
 // Elements for modal window
 const modalWindow = document.getElementById("modal-window");
 const openModalWindowButton = document.getElementById("open-modal-window");
 const closeModalWindowSpan = document.getElementsByClassName("close-modal")[0];
-
-// Blog element
-const blogEntriesSection = document.getElementById("blog-entries");
 
 // *** MODAL WINDOW FUNCTIONS *** //
 // When the user clicks on the button to add new entry, open modal form
@@ -64,7 +57,6 @@ window.onclick = function (event) {
 // *** END MODAL WINDOW FUNCTIONS *** //
 
 // *** START FORM FUNCTIONS *** //
-// *** FORM FUNCTIONS *** //
 const onSubmit = (event) => {
   event.preventDefault();
 
