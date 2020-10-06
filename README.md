@@ -8,11 +8,12 @@
 This project is a simple travel blog including new entry submission form, as required for _Javascript for Web_ course at _Hamburg Coding School_.
 
 ## Features
-* Add travel blog entry to local storage through submission form
-* Display entries on page after submission
-* Each entry includes a random header image, current weather of destination, and embedded google map
-* Sorting of multiple entries based on dates
-* Allow removal of entries from page and local storage
+* Example responsive travel website, including basic home page, about page, and more interactive blog page.
+* Add travel entry to local storage through submission form on blog page.
+* Display entries on page after submission.
+* Each entry includes a random header image, current weather of destination, and embedded google map.
+* Sorting of multiple entries based on dates.
+* Allow removal of entries from page and local storage.
 
 ## Technologies
 Project is created with:
