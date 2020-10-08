@@ -9,11 +9,13 @@ This project is a simple travel blog including new entry submission form, as req
 
 ## Features
 * Example responsive travel website, including basic home page, about page, and more interactive blog page.
-* Add travel entry to local storage through submission form on blog page.
+* Add travel entry to local storage through submission form on blog page. 
+* An example entry is taken automatically from the script should nothing be entered in local storage.
+* Modal form includes various validations, such as preventing entry of future dates or "departure" dates that are before the arrival date.
 * Display entries on page after submission.
-* Each entry includes a random header image, current weather of destination, and embedded google map.
-* Sorting of multiple entries based on dates.
-* Allow removal of entries from page and local storage.
+* Each entry includes a random header image as well as current weather and embedded google map of entered destination.
+* Sorting of multiple entries based on dates using sort function.
+* Allow removal of entries from page and local storage. 
 
 ## Technologies
 Project is created with:
