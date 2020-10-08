@@ -70,15 +70,33 @@
               Welcome to adventure
             </p>
           </div>
+          <button
+            id="jump-to-content"
+            class="jump transition ease-out duration-100"
+          >
+            Explore
+            <svg
+              class="mx-auto h-12 w-auto"
+              xmlns="https://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M15.707 4.293a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L10 8.586l4.293-4.293a1 1 0 011.414 0zm0 6a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L10 14.586l4.293-4.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
         </div>
-        <main class="relative">
+        <main id="content" class="relative">
           <a
             href="blog.html"
-            class="flex flex-wrap lg:flex-no-wrap w-11/12 mx-auto mt-16 bg-white rounded hover:shadow-lg"
+            class="flex flex-wrap lg:flex-no-wrap w-11/12 mx-auto mt-16 bg-white rounded hover:shadow-xl"
           >
             <div class="relative">
               <img
-                class="h-full object-cover rounded"
+                class="h-full max-h-50 sm:max-h-full object-cover object-right rounded"
                 src="assets/images/sheep_on_cliff_faroe_islands.jpg"
                 alt=""
               />
@@ -102,7 +120,7 @@
           </a>
           <a
             href="about.html"
-            class="flex flex-wrap lg:flex-no-wrap w-11/12 mx-auto my-16 bg-white rounded hover:shadow-lg"
+            class="flex flex-wrap lg:flex-no-wrap w-11/12 mx-auto my-16 bg-white rounded hover:shadow-xl"
           >
             <div class="mt-4 lg:ml-6 text-center">
               <div
@@ -124,7 +142,7 @@
             </div>
             <div class="relative">
               <img
-                class="h-full object-cover rounded"
+                class="h-full max-h-50 sm:max-h-full object-cover object-right rounded"
                 src="assets/images/torshavn_faroe_islands.jpg"
                 alt=""
               />

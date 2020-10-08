@@ -18,3 +18,13 @@ burgerMenu.addEventListener("click", () => {
       .forEach((el) => (el.style.display = "block"));
   }
 });
+
+// Smooth scroll function
+const scrollToContent = () => {
+  contentElement.scrollIntoView({
+    behavior: "smooth",
+  });
+};
+
+// Scroll to content on button click
+jumpToContentButton.addEventListener("click", scrollToContent);
