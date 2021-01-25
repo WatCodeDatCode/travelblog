@@ -50,10 +50,10 @@ burgerMenu.addEventListener("click", () => {
 });
 
 // Variable for weather API
-const apiKey = "03bbfddd33521d0c17e64ea09b10e111";
+const apiKey = process.env.WEATHER_API;
 
 // Variable for Google API
-const mapApiKey = "AIzaSyCLtPYNl2W9WNdJVCMjXURmGwnTJrTaeOQ";
+const mapApiKey = process.env.MAP_API;
 
 // Async function to fetch weather from API
 async function getWeatherInformation(city) {
