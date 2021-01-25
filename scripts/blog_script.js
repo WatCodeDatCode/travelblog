@@ -1,3 +1,6 @@
+// Add dotenv requirement for env variables
+require('dotenv').config();
+
 // Variable for current date to be used in functions / example entry
 let today = new Date();
 let currentDay = today.getDate();
@@ -49,10 +52,16 @@ burgerMenu.addEventListener("click", () => {
   }
 });
 
+// Variable for weather API
+const apiKey = process.env.WEATHER_API;
+
+// Variable for Google API
+const mapApiKey = process.env.MAP_API;
+
 // Async function to fetch weather from API
 async function getWeatherInformation(city) {
   let response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.WEATHER_API}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
   );
   let data = await response.json();
   return data;
@@ -307,7 +316,7 @@ async function createSingleEntry(entry) {
     <iframe
       class="h-full min-h-30 w-full col-span-3 md:col-span-2"
       frameborder="0" style="border:0"
-      src="https://www.google.com/maps/embed/v1/place?key=${process.env.MAP_API}&q=${
+      src="https://www.google.com/maps/embed/v1/place?key=${mapApiKey}&q=${
     entry.city
   }" allowfullscreen>
     </iframe>
