@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/WatCodeDatCode/travelblog#readme",
   "dependencies": {
-    "dotenv": "^8.2.0",
     "tailwindcss": "^1.8.10"
   }
 }
