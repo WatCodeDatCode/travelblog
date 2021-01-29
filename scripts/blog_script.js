@@ -1,3 +1,6 @@
+// Add dotenv requirement for env variables
+require('dotenv').config();
+
 // Variable for current date to be used in functions / example entry
 let today = new Date();
 let currentDay = today.getDate();
